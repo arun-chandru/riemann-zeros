@@ -9,11 +9,13 @@ The Riemann zeta function has zeros in a vertical strip of the complex plane. Tw
 
 The main result is the unconditional lower limiting proportion
 
+$$
 \[
 \liminf_{T\to\infty}\frac{N_{\mathrm{s0}}(T)}{N(T)}
 \ge \frac{66812491}{99194876}
 =0.673547805029767868\ldots.
 \]
+$$
 
 Here the numerator counts simple critical-line zeros, and the denominator counts all nontrivial zeros up to height T with multiplicity. Thus the proportion is at least **67.35478050%**, rounded down. No Riemann Hypothesis, or conjectural higher-moment estimate is assumed.
 
