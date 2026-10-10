@@ -1,0 +1,3153 @@
+\documentclass[11pt,reqno]{amsart}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,mathtools,booktabs,microtype}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+ pdftitle={Clipped Gram energies and zero counts of the Riemann zeta function},
+ pdfauthor={R. Arun Chandru},
+ pdfsubject={Unconditional zero-counting bounds, phase rigidity, and variational method ceilings},
+ pdfkeywords={Riemann zeta function, simple zeros, critical line, distinct zeros, Gram certificates, phase rigidity}
+}
+\numberwithin{equation}{section}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\dist}{\operatorname{dist}}
+\newcommand{\sinc}{\operatorname{sinc}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\osc}{\operatorname{osc}}
+\newcommand{\dd}{\,\mathrm d}
+\newcommand{\Ns}{N_{\rm s}}
+\newcommand{\Nsc}{N_{\rm s0}}
+\newcommand{\Nd}{N_{\rm d}}
+\newcommand{\Nc}{N_0}
+\newcommand{\one}{\mathbf1}
+\newcommand{\qstar}{q_\star}
+\title[Clipped Gram energies and zero counts]{Clipped Gram energies and zero counts \\of the Riemann zeta function}
+\author{R. Arun Chandru}
+\email{arun.chandru@gmail.com}
+\date{9 October 2026}
+\subjclass[2020]{Primary 11M26; Secondary 15A42, 42A16, 65G20}
+\keywords{Riemann zeta function, simple zeros, Gram matrices, phase rigidity, variational bounds, rational certificates}
+\begin{document}
+\raggedbottom
+\begin{abstract}
+We study the interaction energy that remains available when the Gram
+matrix associated with the zeros of the Riemann zeta function is
+spectrally clipped. An explicit band-limited majorant and a close-pair
+estimate transfer an existing eight-point inequality to the full clipped
+energy, uniformly over configurations of arbitrary size. Together with
+the unconditional pair-correlation formula this gives
+\[
+ \liminf_{T\to\infty}\frac{N_{\rm s0}(T)}{N(T)}
+ \ge\frac{66812491}{99194876}=0.673547805029767868\ldots,
+\]
+where \(N_{\rm s0}\) counts simple critical-line zeros and \(N\) counts
+all nontrivial zeros with multiplicity, giving \(67.35478050\%\). The corresponding average of
+the simple-zero and critical-line proportions is at least
+\(83.67739025\%\). Evaluating separate labelled and multiplicity
+certificates gives \(83.90046180\%\) for distinct locations,
+\(67.80092360\%\) for simple zeros anywhere,
+\(88.93165002\%\) for simple-or-critical-line mass, and
+\(83.79775462\%\) for mass at locations of multiplicity at most two;
+such locations constitute at least \(93.94524765\%\) of the distinct
+locations. All terminating lower percentages are rounded down.
+Beyond these numerical deductions, we prove a phase comparison in which
+local slack pays continuously for long physical spans, derive a common
+residual for joint profile-and-threshold deductions, and solve a
+two-lattice variational problem explicitly. A twelve-fibre construction
+extends a periodic-mixture obstruction to the full affine \(L^2\) space
+and gives a \(67.404\%\) ceiling for the specified joint-affine
+simple-line relaxation. A simultaneous union ceiling is
+\(89.497833220444\%\). These ceilings describe limitations of the
+relaxation, not upper bounds on the actual zero proportions.
+\end{abstract}
+\maketitle
+\tableofcontents
+
+\section{Introduction}
+
+A multiple zero is expensive in a quadratic energy: multiplicity \(j\)
+contributes \(j\) to the zero count but \(j^2\) to the diagonal
+energy. Nearby distinct zeros also interact. A lower bound for this
+interaction leaves less of the available energy for multiplicities and
+for zeros away from the critical line. The central issue is to retain
+that interaction through the spectral inequality which makes the
+argument unconditional.
+
+For a nonnegative even density \(f\) of integral one on
+\(I=[-1/2,1/2]\), let \(K_f\) denote its Fourier transform. On the
+critical line, normalized zero locations \(y_i\) determine unit vectors
+whose Gram matrix has entries \(K_f(y_i-y_j)\). Its off-diagonal
+square energy measures the interaction. Off the critical line,
+reflection symmetry gives Hermitian terms with at most one positive
+direction per reflected pair. It does not give positive rank-one
+terms. The appropriate comparison therefore uses a clipped square
+\[
+ \phi_c(x)=x^2-(x-c)_+^2
+\]
+rather than the full square on an arbitrary retained Gram matrix.
+Recovering full energy where it is legitimate, and keeping track of
+what is lost elsewhere, will be the organizing principle of the paper.
+
+The analytic foundation is the unconditional Montgomery theorem of
+Baluyot, Goldston, Suriajaya and Turnage-Butterbaugh
+\cite{BGSTB}. It evaluates a pair sum over the complex zeros without
+first placing them on the critical line. Their subsequent work
+\cite{BGSTBI} studies the horizontal information available from pair
+correlation under a narrow-strip hypothesis. The unconditional
+finite-rank and Hilbert-space arguments of Alp\"oge--Furman and
+Lamzouri \cite{AF,Lamzouri} handle the off-line pairs by their inertia
+instead. With the Montgomery--Taylor profile they yield more than
+\(67.25\%\) simple critical-line zeros. These arguments descend from
+Montgomery's pair-correlation method and its test-function
+optimization \cite{Montgomery,MontgomeryTaylor}; conditional
+semidefinite refinements appear in \cite{CGdL}. The present argument
+uses the unconditional complex-zero formula throughout.
+
+Local Gram inequalities have sharpened the basic diagonal estimate.
+The relevant developments include overlapping finite windows,
+pressure optimization, bounded correction potentials and compatible
+window systems
+\cite{Ainta,AMTOPA,Tawanerguo,ChandruP6,GebendorferWindows,GebendorferExpanded}.
+Close-pair separation allows the full energy of a separated remainder
+to survive clipping \cite{Freund,DSouza,Knausgard2026}. Labelled
+inequalities distinguish simple and double locations
+\cite{KnausgardDistinct,Santibanez,Knausgard2026}, while residual and
+multiplicity accounting support further consequences
+\cite{Lamzouri,ChandruP6,ShiTrace,Rakitin,Waddle}.
+Related numerical refinements and their public certificate data are
+reported in \cite{OjhaTrmdy,Schafer,Singh}.
+These ingredients have different roles. A stronger finite inequality
+is useful only when its Fourier profile, its trace energy and the
+clipped operator to which it is applied remain the same.
+
+Our principal numerical result is
+\begin{equation}
+ \liminf_{T\to\infty}\frac{\Nsc(T)}{N(T)}
+ \ge q_*:=\frac{66812491}{99194876}
+ =0.673547805029767868\ldots .
+ \label{eq:intro-main}
+\end{equation}
+Here \(N(T)\) counts nontrivial zeros with \(0<\Im\rho\le T\),
+with analytic multiplicity, and \(\Nsc(T)\) counts those that are
+simple and lie on \(\Re\rho=1/2\). The numerical profile and its
+eight-point floor are specified public inputs \cite{AMTOPA,Lavery2026}.
+For that profile we give an elementary explicit majorant with Fourier
+support \([-17/20,17/20]\) and integral strictly below two, together
+with a close-pair kernel lower bound. Every separated Gram matrix is
+then below the clipping level, regardless of its size. A maximal
+matching of close pairs handles the complement. Summing the local
+inequality on the separated remainder uses the full lag capacities
+and incurs only a fixed endpoint loss. The smoothing needed by the
+analytic formula costs \(O(\delta n)\), not \(O(\delta n^2)\).
+These facts turn the local floor into the global estimate
+\[
+ \tr\phi_2(U)-n\ge
+ \frac{805124}{10^8}n-\frac{404350}{10^8}S-O(1),
+\]
+where \(S\) is the span and \(U\) is the normalized Gram matrix.
+This realization of an established separation mechanism, for the
+specified profile with explicit uniform constants, yields
+\eqref{eq:intro-main}.
+
+Keeping the positive-index information also gives
+\[
+ \liminf_{T\to\infty}\frac{\Ns(T)+\Nc(T)}{2N(T)}
+ \ge\frac{1+q_*}{2}=0.836773902514883934\ldots .
+\]
+The two counts in this average have different meanings:
+\(\Ns\) counts simple zeros anywhere, whereas \(\Nc\) counts all
+critical-line multiplicity. They are not each bounded below by the
+displayed average. Table~\ref{tab:plus-counts} collects seven
+consequences, with every numerator and denominator identified.
+The remaining five values come from evaluating other stated
+certificates at sharper exact energy bounds, not from adding the
+gains of incompatible profiles. The small numerical refinements
+are kept distinct from the structural results.
+
+The first structural question concerns information left after a local
+inequality is summed. Its nonnegative slack \(H\) and the energy \(T\)
+at unused index lags are often both discarded. A sinc-type lower bound
+for the Fourier kernel converts small long-lag energy into phase
+agreement. The difficulty is that a fixed index lag can have an
+arbitrarily large physical span. We show that the sum of the local
+slacks over a frame cover pays for that span continuously. The result
+is a uniform estimate for the squared distance of adjacent gaps to
+the integers. For one explicit profile,
+\begin{equation}
+ \sum_i\dist(y_{i+1}-y_i,\Z)^2\le350(H+T)+6.
+ \label{eq:intro-rigidity}
+\end{equation}
+More generally, under fixed local slack and endpoint hypotheses, a
+degree-\(D\) cosine profile permits an \(O(D)\) energy price. The
+argument keeps a geometric residual which an affine count alone
+does not record. Its profile is separate from that of
+\eqref{eq:intro-main}.
+
+The complementary structural question is how much any deduction from
+a specified collection of affine floors can establish. Periodic
+configurations supply tests of every universal floor. We put their
+profile dependence, the clipping thresholds and the unused test
+slack into one exact residual. The residual permits arbitrary fixed
+finite combinations of profiles, with separate thresholds, while
+testing all of them on common configurations. It leads to two
+variational conclusions. A mixture of the unit lattice and the
+spacing-two lattice has an explicit positive minimizer, a coercive
+error term and an exact two-count frontier within that
+two-test relaxation. A period-three/period-four mixture, originating
+in the finite-dimensional obstruction of
+\cite{GebendorferCap}, admits a twelve-fibre formulation on all of
+\(L^2(I)\). A rational approximate minimizer and a rigorous residual
+bound yield the \(67.404\%\) ceiling stated in the abstract.
+The two-lattice frontier also gives the simultaneous
+\(89.497833220444\%\) union ceiling.
+
+A ceiling here is a feasibility statement about retained inequalities.
+It says that those inequalities allow a particular abstract count
+population; it does not construct zeros with those counts. This
+distinction is productive: it identifies the extra information a
+stronger deduction must retain. The phase comparison retains such
+information, as do labelled-block constraints not included in the
+specified relaxation. In a smaller scalar multiplicity relaxation we
+can be more explicit: a population of simple and triple real
+locations satisfies every scalar clipping row and simultaneously
+attains the two cutoff-two bounds. Changing the clipping level alone
+cannot improve these bounds.
+
+We first establish the signed-operator interface and prove the
+majorant and full-energy transfer for the main profile. We then give
+the count deductions, the phase comparison, and the joint
+variational analysis. The appendices specify the finite rational
+calculations and the data used in the twelve-fibre estimate.
+Computer-assisted local inequalities are cited with their precise
+profiles and domains; all subsequent operator, counting and
+variational arguments are given here. The accompanying formal source
+covers the main numerical simple-line chain, while the additional
+count and variational results have the proofs and arithmetic
+certificates specified in the paper.
+\section{One operator and the counting interface}
+\label{sec:interface}
+
+\subsection{Profiles, complex zeros, and the trace energy}
+
+Put $I=[-1/2,1/2]$. For an even probability density $f\in L^2(I)$,
+extended by zero, define
+\begin{equation}
+ K_f(t)=\int_I f(u)e^{2\pi itu}\dd u,\qquad
+ R(f)=\int_I f^2+\iint_{I^2}|s-t|f(s)f(t)\dd s\dd t.
+ \label{eq:normalization}
+\end{equation}
+The same integral defines $K_f(t)$ for complex $t$ and is entire,
+because $f$ is integrable with compact support.
+We use $\sinc(t)=\sin(\pi t)/(\pi t)$, with $\sinc(0)=1$.
+For the analytic construction in this section assume additionally that
+$\sqrt f$ is smooth in the interior of $I$. The numerical profiles are
+strictly positive finite cosine sums and satisfy this assumption. The
+variational problems later in the paper are defined on all of $L^2(I)$.
+Choose smooth even cutoffs $0\le\chi_\varepsilon\le1$, supported inside
+$I$, tending to one, and set
+\[
+ m_\varepsilon=\int f\chi_\varepsilon^2,\qquad
+ f_\varepsilon=f\chi_\varepsilon^2/m_\varepsilon
+ =\eta_\varepsilon^2.
+\]
+Then $f_\varepsilon\to f$ in $L^1$ and $L^2$, and
+\begin{equation}
+ K_\varepsilon(0)=1,\quad |K_\varepsilon|\le1,\quad
+ \sup_{t\in\R}|K_\varepsilon(t)-K_f(t)|
+ \le\|f_\varepsilon-f\|_1\longrightarrow0.
+ \label{eq:smoothing}
+\end{equation}
+
+Let $N(T)$ count all nontrivial zeros $\rho$ with
+$0<\Im\rho\le T$, with analytic multiplicity. Write $L=\log T$ and
+$z_\rho=i(\rho-1/2)L/(2\pi)$. Reflection
+$\rho\mapsto1-\bar\rho$ becomes $z\mapsto\bar z$.
+On the finite-dimensional span of
+$F_z(u)=\eta_\varepsilon(u)e^{-2\pi iuz}$ consider
+\begin{equation}
+ \mathcal A=\sum_z\nu_zF_z\langle F_{\bar z},\cdot\rangle,
+ \qquad
+ \tr\mathcal A=N(T),\quad
+ \tr\mathcal A^2=\sum_{z,w}\nu_z\nu_w K_\varepsilon(z-w)^2.
+ \label{eq:operator}
+\end{equation}
+The inner product is conjugate-linear in its first argument. Conjugate
+pairs make $\mathcal A$ Hermitian. The square in the last expression is
+not a modulus square; the whole sum is nevertheless the nonnegative
+trace of the square of a Hermitian operator.
+
+The unconditional analytic input, in the form of
+\cite[Lemma 3.1 and Section 3]{Lamzouri} and
+\cite[Proposition 3.1]{Knausgard2026}, is
+\begin{equation}
+ \tr\mathcal A^2=(R(f_\varepsilon)+o(1))N(T),\qquad
+ R(f_\varepsilon)\longrightarrow R(f).
+ \label{eq:trace-limit}
+\end{equation}
+The first limit keeps $\varepsilon$ fixed. To specify the normalization,
+put $g=f_\varepsilon*f_\varepsilon$. Then
+\[
+ \widehat{g-g''/(4L^2)}(x)
+ =(1+\pi^2x^2/L^2)K_\varepsilon(x)^2.
+\]
+At $x=z_\rho-z_{\rho'}$ the factor cancels the weight
+$4/(4-(\rho-\rho')^2)$ in the unconditional pair formula
+\cite{BGSTB}. Both $g$ and $g''$ are fixed admissible smooth tests;
+the derivative contribution is $O_\varepsilon(N/L^2)$, while the first
+contributes $g(0)+\int|u|g(u)\dd u=R(f_\varepsilon)$.
+The scaled real coordinates have total span at most
+$T\log T/(2\pi)=N(T)+o(N(T))$.
+
+\subsection{The finite inequality and simple critical-line zeros}
+
+For $c\ge0$ let
+\begin{equation}
+ \phi_c(x)=x^2-(x-c)_+^2.
+ \label{eq:clipping}
+\end{equation}
+It is convex, quadratic below $c$, and linear above $c$. If $A=P+Q$
+is Hermitian, $P\succeq0$, and $Q$ has at most $p$ positive eigenvalues,
+then for $t\ge c\ge0$,
+\begin{equation}
+ \tr A^2\ge\tr\phi_c(P)+2t(\tr A-\tr P)-t^2p.
+ \label{eq:two-level}
+\end{equation}
+Indeed write $Q=Q_+-Z$, where $Z\succeq0$ and $ZQ_+=0$.
+The cross term gives
+$\tr A^2\ge\tr(P-Z)^2+\tr Q_+^2$.
+For $X=P-cI$, the inequalities
+$\tr(XZ)\le\tr(X_+Z)$ and $\tr(X_+-Z)^2\ge0$ imply
+$\tr(P-Z)^2+2c\tr Z\ge\tr\phi_c(P)$.
+Also $\tr Q_+^2\ge2t\tr Q_+-t^2p$.
+Adding leaves $2(t-c)\tr Z\ge0$, proving
+\eqref{eq:two-level}. This is the finite clipping argument of
+\cite{KnausgardDistinct,Knausgard2026}, recalled to fix every coefficient.
+
+For any principal-block partition of a Hermitian matrix $G$,
+\begin{equation}
+ \tr\phi_c(G)\ge\sum_B\tr\phi_c(G_B).
+ \label{eq:pinching}
+\end{equation}
+Choose an orthonormal eigenbasis of each block and apply scalar Jensen
+to the spectral measure of $G$ at each resulting basis vector. Summing
+proves the assertion; operator convexity is not needed.
+
+Let $n=\Nsc(T)$ be the number of simple critical-line zeros, and take
+$P$ to be their part of \eqref{eq:operator}. Its nonzero spectrum is
+that of the Gram matrix $U=(K_\varepsilon(y_i-y_j))$, and $\tr P=n$.
+Each remaining real location contributes at most one positive direction
+and has multiplicity at least two. Each reflected off-line pair of
+multiplicity $j$ contributes $j(vw^*+wv^*)$, of trace $2j$ and with
+at most one positive direction, since
+\[
+ vw^*+wv^*=\tfrac12\bigl((v+w)(v+w)^*-(v-w)(v-w)^*\bigr).
+\]
+Thus $2p\le N-n$. With $c=t=2$,
+\begin{equation}
+ \tr\mathcal A^2\ge2(N-n)+\tr\phi_2(U).
+ \label{eq:simple-master}
+\end{equation}
+
+Suppose that $a<1$, $b\ge0$, and a constant $B$ satisfy, for every
+finite real configuration of $n$ points and all small $\varepsilon$,
+\begin{equation}
+ \tr\phi_2(U)-n\ge an-bS-\omega(\varepsilon)n-B,
+ \qquad\omega(\varepsilon)\longrightarrow0,
+ \label{eq:affine-certificate}
+\end{equation}
+where $S$ is its span (zero for at most one point). Combining
+\eqref{eq:trace-limit}--\eqref{eq:affine-certificate}, and taking
+$T\to\infty$ before $\varepsilon\to0$, gives
+\begin{equation}
+ \liminf_{T\to\infty}\frac{\Nsc(T)}{N(T)}
+ \ge\frac{2-R(f)-b}{1-a}.
+ \label{eq:simple-quotient}
+\end{equation}
+This is the standard certificate interface
+\cite{AF,Lamzouri,ChandruP6,Knausgard2026}. The numerical application below keeps its profile, finite local input,
+and global Gram operator compatible throughout.
+
+\section{A profile for which separated energy is retained}
+\label{sec:am-profile}
+
+The numerical construction uses the interval $I=[-1/2,1/2]$ and the
+positive profile
+\begin{equation}
+ v(s)=\cos(\sqrt2s)+\sum_{j=1}^{12}d_j\cos(2\pi js),\qquad
+ f(s)=\frac{v(s)}{K_0},\qquad
+ K_0=\sqrt2\sin\theta,\quad \theta=\frac{\sqrt2}{2}.
+ \label{eq:am-profile}
+\end{equation}
+The density $f$ is extended by zero outside $I$. The coefficients are
+specified exactly by
+\[
+\begin{array}{c|r@{\qquad}c|r}
+j&10^9d_j&j&10^9d_j\\\hline
+1&12310798&7&-6846472\\
+2&-15041681&8&3781297\\
+3&3867664&9&-5670353\\
+4&6489926&10&3355089\\
+5&-992327&11&-450523\\
+6&5580097&12&-218483
+\end{array}
+\]
+This is the cosine family introduced in \cite{AMTOPA}, with the
+coefficients and eight-point inequality of \cite{Lavery2026}.
+We apply that inequality to the full clipped Gram energy. Close-pair matching, separated-set norm
+bounds, and convex pinching are established parts of this method
+\cite{Freund,Knausgard2026}; the estimates here realize their requirements
+for the specific profile \eqref{eq:am-profile}. In fact, its coefficient
+absolute sum also lies within the uniform cosine-family range of
+\cite[Section 3]{Freund}. Thus the proportion obtained below is a new
+evaluation of the established transfer, rather than a new general
+separation theorem. The explicit estimates given here provide a
+self-contained realization at separation $17/20$.
+
+The normalization is immediate because every correction cosine has
+integral zero. Moreover,
+\[
+ \sum_{j=1}^{12}|d_j|\le\frac{13}{200},\qquad
+ \cos(\sqrt2s)\ge1-s^2,
+\]
+so $v(s)\ge137/200$ on $I$. In particular $f$ is a probability
+density, and $|K_f(t)|\le1$ for real $t$.
+
+Its energy has a particularly simple exact expression. Set
+\begin{equation}
+ P=\sum_{j=1}^{12}d_j^2
+       \left(\frac12-\frac1{4\pi^2j^2}\right),\qquad
+ H=2-R(f)
+  =\frac32-\frac{\cos\theta}{\sqrt2\sin\theta}
+       -\frac{P}{2\sin^2\theta}.
+ \label{eq:am-energy}
+\end{equation}
+To see the cancellation behind this formula, put
+$v_0(s)=\cos(\sqrt2s)$. The function
+\[
+ v_0(s)+\int_I|s-t|v_0(t)\,dt
+\]
+has zero second derivative and zero derivative at $s=1/2$; it is
+therefore the constant $\cos\theta+K_0/2$. All cross terms with a
+mean-zero perturbation vanish in the energy form. For $j\ge1$, direct
+differentiation gives
+\[
+ \int_I|s-t|\cos(2\pi jt)\,dt
+   =\frac{(-1)^j-\cos(2\pi js)}{2\pi^2j^2}.
+\]
+Orthogonality of the cosines then gives the correction $P$, while
+the unperturbed energy is $K_0\cos\theta+K_0^2/2$. Division by
+$K_0^2=2\sin^2\theta$ proves \eqref{eq:am-energy}.
+
+Here and below the numerical enclosures can be checked with rational
+arithmetic. One convenient enclosure is
+\begin{equation}
+ H\ge H_0:=\frac{67216841}{10^8}.
+ \label{eq:am-H-floor}
+\end{equation}
+For completeness, introduce the rational numbers
+\[
+\begin{aligned}
+ r_-&=\frac{7071067811865475244}{10^{19}},&
+ r_+&=\frac{7071067811865475245}{10^{19}},\\
+ s_-&=\frac{64963693904}{10^{11}},&
+ c_+&=\frac{76024459708}{10^{11}},\\
+ p_+&=\frac{314159265358979323847}{10^{20}}.
+\end{aligned}
+\]
+Squaring brackets $\theta$ between $r_-$ and $r_+$. Taylor bounds give
+$\sin\theta\ge s_-$ and $\cos\theta\le c_+$, and $\pi<p_+$.
+For example, the sine and cosine polynomials of degree at most eleven
+have error at most $13|x|^{12}/5748019200$ for $|x|\le1$; applying
+them at the rational endpoints proves the two trigonometric bounds.
+With
+\[
+ P_+=\sum_{j=1}^{12}d_j^2\left(\frac12-\frac1{4p_+^2j^2}\right),
+\]
+the remaining check is the exact rational inequality
+\begin{equation}
+ \frac32-\frac{c_+}{2r_-s_-}-\frac{P_+}{2s_-^2}
+ \ge\frac{67216841}{10^8}.
+ \label{eq:am-H-rational-check}
+\end{equation}
+The positive denominators and $0\le P\le P_+$ give the direction
+required in \eqref{eq:am-H-floor}.
+
+\subsection{A uniform norm bound from separation}
+
+Let $d=17/20$ and use the normalization
+$\operatorname{sinc}(t)=\sin(\pi t)/(\pi t)$. Consider
+\begin{equation}
+ g(s)=\frac7{10}\left\{
+  \operatorname{sinc}\bigl(d(s-1/2)\bigr)+
+  \operatorname{sinc}\bigl(d(s+1/2)\bigr)\right\}^2.
+ \label{eq:am-majorant}
+\end{equation}
+This nonnegative integrable function satisfies
+\begin{equation}
+ f(s)+\frac{5789}{960000}\le g(s)\quad(s\in I),\qquad
+ \Lambda:=\int_{\mathbb R}g(s)\,ds\le\frac{1253}{650}<2,
+ \qquad \widehat g(t)=0\quad(|t|\ge d).
+ \label{eq:am-majorant-properties}
+\end{equation}
+The strict margin and the Fourier support, rather than pointwise
+convergence of matrix entries, are what make the resulting norm bound
+independent of the number of points.
+
+The pointwise inequality admits a short polynomial verification.
+Since $K_0^{-1}\le109/100$, the elementary upper bound for cosine gives,
+with $x=s^2\in[0,1/4]$,
+\[
+ f(s)\le\frac{109}{100}
+       \left(\frac{213}{200}-x+\frac{x^2}{6}\right).
+\]
+To bound the sum of sincs from below, write $D=\pi d$ and use
+\[
+ D^2\le\frac{357}{50},\qquad
+ D^4\ge\frac{31684}{625},\qquad D^6\le364.
+\]
+These follow from $157/50\le\pi\le22/7$. The degree-six lower
+bound for $\sin z/z$, applied at $D(s-1/2)$ and $D(s+1/2)$,
+gives the polynomial
+\[
+\begin{split}
+ &2-\frac{119}{200}+\frac{7921}{150000}-\frac{13}{5760}
+ +\left(-\frac{119}{50}+\frac{7921}{6250}-\frac{13}{96}\right)x\\
+ &\hspace{35mm}
+ +\left(\frac{31684}{37500}-\frac{13}{24}\right)x^2
+ -\frac{13}{90}x^3.
+\end{split}
+\]
+Its constant exceeds $29/20$, its linear coefficient exceeds $-5/4$,
+and its last two terms have nonnegative sum on $[0,1/4]$.
+Consequently the sinc sum is at least $29/20-5x/4>0$.
+Subtracting the displayed upper bound for $f$ from the corresponding
+lower bound for $g$ leaves
+\[
+ Q(x)=\frac{3109}{10000}-\frac{579}{400}x+
+                         \frac{2189}{2400}x^2.
+\]
+Here
+\[
+ Q(x)-Q(1/4)
+  =(1/4-x)\left\{\frac{579}{400}
+                   -\frac{2189}{2400}(x+1/4)\right\}\ge0,
+ \qquad Q(1/4)=\frac{5789}{960000},
+\]
+which proves the required margin. The degree-seven lower Taylor
+bound for sine also gives
+\[
+ K_0\ge1-\frac1{12}+\frac1{480}-\frac1{40320}
+       >\frac{100}{109},
+\]
+and hence the bound $K_0^{-1}\le109/100$ used above.
+
+The Fourier transform of each sinc in \eqref{eq:am-majorant} is a
+modulated interval indicator. The square corresponds to convolution,
+so its transform is supported on $[-d,d]$, is continuous, and vanishes
+at both endpoints. Parseval gives
+\[
+ \Lambda=\frac{28}{17}\{1+\operatorname{sinc}(17/20)\}.
+\]
+For a rational bound on the last quantity, put $y=3\pi/20$ and use
+$\sin(17\pi/20)=\sin y$. The estimates
+$y^2\ge22206/10^5$ and $y^4\le4932/10^5$ imply
+\[
+ \operatorname{sinc}(17/20)
+ \le\frac3{17}\left(1-\frac{y^2}{6}+\frac{y^4}{120}\right)
+ \le\frac3{17}\frac{963401}{10^6}.
+\]
+Substitution proves the bound $\Lambda\le1253/650$.
+
+For any $d$-separated real points $x_1,\ldots,x_m$ and complex
+coefficients $z_1,\ldots,z_m$, \eqref{eq:am-majorant-properties}
+therefore gives
+\begin{equation}
+\begin{split}
+ \sum_{i,j}\overline{z_i}z_jK_f(x_i-x_j)
+ &=\int_I f(s)\left|\sum_jz_je^{-2\pi ix_js}\right|^2\,ds\\
+ &\le\int_{\mathbb R}g(s)
+                  \left|\sum_jz_je^{-2\pi ix_js}\right|^2\,ds
+ =\Lambda\sum_j|z_j|^2.
+\end{split}
+\label{eq:am-separated-norm}
+\end{equation}
+The identity uses the vanishing of the off-diagonal Fourier terms,
+including pairs at distance exactly $d$. Thus the Gram matrix on
+every such set has spectrum below two.
+
+The same conclusion applies after the smoothing used in the trace
+formula. Indeed $m_\varepsilon f_\varepsilon=f\chi_\varepsilon^2\le f$
+and $m_\varepsilon\to1$, so the smoothed Gram matrix has norm at
+most $\Lambda/m_\varepsilon<2$ for all sufficiently small
+$\varepsilon$. This choice of $\varepsilon$ works simultaneously for
+all separated sets and all their cardinalities.
+
+\subsection{What a close pair contributes}
+
+The complementary estimate is
+\begin{equation}
+ K_f(t)\ge\frac{2583}{20000}>\frac18
+ \quad (|t|\le17/20).
+ \label{eq:am-close-pair}
+\end{equation}
+Here is a direct bound that also keeps removable singularities out of
+the argument. Put
+\[
+ K_{\rm MT}(t)=\int_I\cos(\sqrt2s)\cos(2\pi ts)\,ds.
+\]
+For $0\le t\le d$, this function decreases with $t$, because the
+cosine factor is nonnegative and the other cosine decreases pointwise
+when expressed using $|s|$. At the endpoint, elementary integration
+gives, with $z=17\pi/20$, $y=3\pi/20$, and
+$\gamma=\cos\theta/K_0$,
+\[
+ \frac{K_{\rm MT}(d)}{K_0}
+  =\frac{\cos y+2\gamma z\sin y}{2z^2-1}\ge\frac15.
+\]
+For the last comparison it suffices to use
+\[
+ \gamma\ge\frac45,\quad \frac83\le z\le\frac{187}{70},
+ \quad\sin y\ge\frac9{20},\quad\cos y\ge\frac{22}{25}.
+\]
+The numerator is then at least $14/5$ and the positive denominator at
+most $32519/2450$. The sine and cosine bounds follow from their first
+Taylor inequalities and $471/1000\le y\le33/70$.
+For $\gamma$, use $\cos\theta\ge3/4$ and
+$K_0\le1-1/12+1/480=147/160$, which give
+$\gamma\ge40/49>4/5$.
+
+The transform of each correction cosine is
+\[
+ \frac12\{\operatorname{sinc}(t-j)+
+                  \operatorname{sinc}(t+j)\},
+\]
+of absolute value at most one. The total correction to
+$K_{\rm MT}/K_0$ is therefore at most
+\[
+ (109/100)(13/200)=1417/20000.
+\]
+Combining this with the preceding
+endpoint estimate proves \eqref{eq:am-close-pair}; evenness covers
+negative $t$.
+
+\section{The eight-point floor and its global consequence}
+\label{sec:am-transfer}
+
+Take nonnegative gaps $g_0,\ldots,g_6$, and put
+$p_0=0$, $p_j=\sum_{r<j}g_r$ for $1\le j\le7$.
+The prior eight-point certificate \cite{Lavery2026} is the inequality
+\begin{equation}
+ \sum_{r=0}^6b_rg_r+
+ \sum_{0\le i<j\le7}a_{ij}K_f(p_j-p_i)^2
+ \ge a_8:=\frac{805124}{10^8}
+ \qquad(g_r\ge0).
+ \label{eq:am-local-floor}
+\end{equation}
+All entries in the following table are the numerators of $10^8a_{ij}$;
+the lower triangle is unused.
+\begin{center}
+\small
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{c|rrrrrrr}
+$i\backslash j$&1&2&3&4&5&6&7\\\hline
+0&13630830&0&19565904&20317441&45030671&100000000&200000000\\
+1&&29997996&30621878&47766489&79682558&109938656&100000000\\
+2&&&37356140&69378121&65335210&79682558&45030671\\
+3&&&&38030065&69378121&47766489&20317441\\
+4&&&&&37356140&30621878&19565904\\
+5&&&&&&29997996&0\\
+6&&&&&&&13630830
+\end{tabular}
+\end{center}
+The pressure coefficients are
+\begin{equation}
+ 10^8(b_0,\ldots,b_6)
+ =(28898,57272,75526,80958,75526,57272,28898),\qquad
+ B_8:=\sum_rb_r=\frac{404350}{10^8}.
+ \label{eq:am-pressures}
+\end{equation}
+The coefficients are nonnegative. Their seven lag sums are
+\begin{equation}
+\begin{split}
+10^8\left(\sum_{i=0}^{7-\ell}a_{i,i+\ell}\right)_{\ell=1}^7
+&=(199999997,199999998,199999996,\\
+&\quad199999998,199999998,200000000,200000000),
+\end{split}
+\label{eq:am-capacities}
+\end{equation}
+so each lag has capacity at most two.
+
+The local floor \eqref{eq:am-local-floor} is the computer-assisted
+part of this input. Its domain and every coefficient are specified
+here, while the accompanying formal source contains its complete
+finite proof data. Since every $b_r$ is positive, a gap with
+$b_rg_r\ge a_8$ is handled by pressure alone. On the remaining
+bounded box the verification uses rational cells with retained
+pair-distance constraints, proved analytic minorants for $K_f^2$,
+and nonnegative multiplier combinations. Infeasible cells are excluded
+by rational linear combinations of their constraints; the other leaves
+verify the stated floor. The coefficient table is invariant under
+reversing the seven gaps, so a certified half-domain suffices.
+The analytic enclosures, covering argument, and exact leaf data are
+included in that source. Thus the numerical floor is a specified
+reusable mathematical input; the finite argument that follows only
+requires \eqref{eq:am-local-floor} and the visible capacities
+\eqref{eq:am-capacities}.
+
+Consider first ordered points $x_0<\cdots<x_{m-1}$ with $m\ge8$.
+Sum \eqref{eq:am-local-floor} over all consecutive eight-point
+windows. If $S=x_{m-1}-x_0$, the pressure telescopes exactly to
+\begin{equation}
+ \sum_{r=0}^6 b_r(x_{m-7+r}-x_r)\le B_8S.
+ \label{eq:am-pressure-telescope}
+\end{equation}
+Each pair of index lag $\ell\le7$ is charged at most the full
+lag sum in \eqref{eq:am-capacities}. Hence
+\begin{equation}
+ E_7(x):=2\sum_{\substack{0\le i<j<m\\j-i\le7}}
+                 K_f(x_j-x_i)^2
+ \ge a_8(m-7)-B_8S.
+ \label{eq:am-band-floor}
+\end{equation}
+For $m\le7$ the right side is nonpositive, so this formula also holds
+for short configurations, with zero span for an empty configuration.
+
+On a $d$-separated set the Gram matrix $U=(K_f(x_i-x_j))$ has norm
+below two by \eqref{eq:am-separated-norm}. Since its diagonal is one,
+\begin{equation}
+ \operatorname{tr}\phi_2(U)-m
+  =\operatorname{tr}(U-I)^2
+  =\sum_{i\ne j}|U_{ij}|^2
+  \ge a_8m-B_8S-7a_8.
+ \label{eq:am-separated-defect}
+\end{equation}
+The entire off-diagonal energy is available on this block; selecting
+the seven-band energy in \eqref{eq:am-band-floor} only makes a lower
+bound smaller.
+
+For arbitrary distinct real points, choose a maximal collection of
+disjoint pairs at distance less than $d$. If two unmatched points were
+closer than $d$, they could be added as another pair; thus all unmatched
+points form one separated remainder. A two-point Gram block has
+eigenvalues $1\pm|K_f(t)|$, both in $[0,2]$, and therefore contributes
+the clipped excess $2K_f(t)^2$. By \eqref{eq:am-close-pair}, this
+is at least $1/32>2a_8$.
+
+Convex spectral pinching permits these pair blocks and the single
+remainder block to be treated together. More explicitly, for any
+principal-block partition, choose an orthonormal eigenbasis in each
+block. Jensen's scalar inequality for the spectral measure of the
+full matrix, summed over the resulting orthonormal basis, gives
+$\operatorname{tr}\phi_2(U)\ge\sum_B\operatorname{tr}\phi_2(U_B)$.
+The remainder has span no larger than the original span, and it alone
+pays the pressure and endpoint term. We obtain
+\begin{equation}
+ \operatorname{tr}\phi_2(U)-n
+ \ge a_8n-B_8S-7a_8
+ \label{eq:am-global-affine}
+\end{equation}
+for every finite configuration of $n$ distinct real points.
+
+To use this inequality with smooth trace tests, set
+$\delta_\varepsilon=\|f_\varepsilon-f\|_1$. Uniformly for real $t$,
+$|K_{f_\varepsilon}(t)-K_f(t)|\le\delta_\varepsilon$, and both kernels
+have absolute value at most one. Each squared entry thus changes by
+at most $2\delta_\varepsilon$. The ordered seven-band has at most
+$14m$ entries, so its loss is at most $28\delta_\varepsilon m$.
+A two-point block loses at most $4\delta_\varepsilon$.
+Together with the uniform separated norm bound proved above, the
+same matching argument gives
+\begin{equation}
+ \operatorname{tr}\phi_2(U_\varepsilon)-n
+ \ge(a_8-28\delta_\varepsilon)n-B_8S-7a_8,
+ \qquad\delta_\varepsilon\longrightarrow0.
+ \label{eq:am-smoothed-affine}
+\end{equation}
+This error is proportional to the number of points. The proof never
+sums uniform approximation errors over all $n^2$ matrix entries.
+
+\subsection{The zero-counting proportion}
+
+Apply \eqref{eq:am-smoothed-affine} to the simple critical-line part
+of the signed zero operator. The two-level trace inequality with
+clipping and comparison level both equal to two gives
+\[
+ \operatorname{tr}\mathcal A^2
+ \ge2(N-n)+\operatorname{tr}\phi_2(U_\varepsilon).
+\]
+The scaled span is at most $N+o(N)$. Keep the smoothing fixed while
+height tends to infinity, use the trace energy formula, and then let
+$\varepsilon$ tend to zero. Since $a_8<1$, this yields
+\begin{equation}
+ \liminf_{T\to\infty}\frac{N_{\rm s0}(T)}{N(T)}
+ \ge\frac{H-B_8}{1-a_8}
+ \ge q:=\frac{66812491}{99194876}
+ =0.673547805029767868\ldots.
+ \label{eq:am-proportion}
+\end{equation}
+The exact rational step is
+\[
+ (1-a_8)\frac{66812491}{99194876}=H_0-B_8.
+\]
+All displayed constants satisfy the needed guards
+$0<a_8<1/64$, $B_8\ge0$, and $\Lambda<2$.
+In particular the simple critical-line proportion is at least
+$67.35478050\%$, with that terminating percentage rounded down.
+
+
+\section{What the energy says about the different counts}
+\label{sec:plus-counts}
+
+Simplicity, critical-line location, and multiplicity give different ways
+to spend the same energy budget. We write $N_{\rm s0}(T)$ for simple
+critical-line zeros, $N_{\rm s}(T)$ for simple zeros anywhere,
+$N_0(T)$ for critical-line zeros with multiplicity, and $N_{\rm d}(T)$
+for distinct complex zero locations. The count $N_{\rm s\cup0}(T)$
+includes the multiplicity mass of zeros that are simple or on the line,
+with the overlap counted once. Finally, $M_{\le r}(T)$ is the mass
+at locations of multiplicity at most $r$, and $D_{\le r}(T)$ is the
+number of those locations. Distinct locations with the same ordinate
+remain distinct. We suppress $T$ inside the finite counting arguments.
+
+The resulting lower limiting proportions are collected in
+Table~\ref{tab:plus-counts}. Each complete deduction uses its own
+profile and that profile's energy. The strengthened simple-block
+certificate supplies the first and fourth rows. The labelled local
+inequality supplies the second, and its elementary counting consequence
+supplies the third. The remaining rows use the third local profile
+with the multiplicity accounting developed in
+\cite{Lamzouri,ChandruP6,Knausgard2026}.
+
+\begin{table}[htbp]
+\centering\small
+\caption{Lower bounds for the liminf of each displayed ratio as
+$T\to\infty$. Percentages are rounded down to eight decimal places.}
+\label{tab:plus-counts}
+\begin{tabular}{lrl}
+\toprule
+Ratio & Lower percentage & Input to the deduction\\
+\midrule
+$N_{\rm s0}/N$ & $67.35478050$ & Strengthened simple-block floor\\
+$N_{\rm d}/N$ & $83.90046180$ & Labelled local floor\\
+$N_{\rm s}/N$ & $67.80092360$ & Distinct-count identity\\
+$(N_{\rm s}+N_0)/(2N)$ & $83.67739025$ & Retained excess\\
+$N_{\rm s\cup0}/N$ & $88.93165002$ & Third-profile tangent\\
+$M_{\le2}/N$ & $83.79775462$ & Third-profile mass costs\\
+$D_{\le2}/N_{\rm d}$ & $93.94524765$ & Third-profile location costs\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The strengthened certificate has
+\begin{equation}
+ \widehat a=\frac{805124}{10^8},\qquad
+ \widehat b=\frac{404350}{10^8},\qquad
+ R_*\le R_*^+:=2-\frac{67216841}{10^8}.
+ \label{eq:plus-main-count-data}
+\end{equation}
+Consequently its simple-critical-line proportion is
+\begin{equation}
+ q_*:=\frac{2-R_*^+-\widehat b}{1-\widehat a}
+ =\frac{66812491}{99194876}.
+ \label{eq:plus-main-count}
+\end{equation}
+The coefficient $\widehat a$ is positive. This matters for the
+average consequence, because the finite argument preserves more
+information than its final numerical bound.
+
+\subsection{The excess and the average count}
+
+Let $n=N_{\rm s0}$, and let $b_{\rm exc}$ count one orbit for each
+multiple critical-line location and one for each reflected off-line
+pair. Its excess mass is
+\[
+ e=N-n-2b_{\rm exc}\ge0.
+\]
+A multiple real location of multiplicity $j$ contributes $j-2$ to
+$e$, while a reflected pair of multiplicity $j$ at each member
+contributes $2(j-1)$. Before the positive-index count is replaced
+by $(N-n)/2$, the clipping inequality and a simple-block certificate
+with coefficients $a,b$ give
+\begin{equation}
+ \operatorname{tr}\mathcal A^2+bS+o(N)+O(1)
+ \ge 2N-(1-a)n+2e.
+ \label{eq:plus-retained-excess}
+\end{equation}
+Here the smoothing error is removed after the height limit, as in
+the preceding construction.
+
+Let $B_{\rm off}$ be the mass of multiple off-line zeros.
+The contribution of a pair with multiplicity $j\ge2$ is $2j$
+to $B_{\rm off}$ and $2(j-1)$ to $e$, so $B_{\rm off}\le2e$.
+Inclusion--exclusion for the two multiplicity counts is the exact identity
+\[
+ N_{\rm s}+N_0=N+n-B_{\rm off}.
+\]
+Combining it with \eqref{eq:plus-retained-excess} yields
+\[
+ N_{\rm s}+N_0
+ \ge 3N-\operatorname{tr}\mathcal A^2-bS+an-o(N)-O(1).
+\]
+For $a\ge0$, insert the simple-critical lower bound
+$q=(2-R^+-b)/(1-a)$ and the trace and span limits. The identity
+$3-R^+-b+aq=1+q$ then gives
+\begin{equation}
+ \liminf_{T\to\infty}\frac{N_{\rm s}(T)+N_0(T)}{2N(T)}
+ \ge\frac{1+q}{2}.
+ \label{eq:plus-average-transfer}
+\end{equation}
+At \eqref{eq:plus-main-count} the right side is
+$166007367/198389752$. This is a lower bound for one average;
+it does not separately bound either component by that number.
+The retained-excess deduction is part of the earlier counting
+framework \cite{ChandruP6,Knausgard2026}.
+
+\subsection{Profile energies and the labelled distinct count}
+
+For a finite cosine profile
+$f(u)=1+\sum_{j=1}^D a_j\cos(2\pi ju)$ on $[-1/2,1/2]$,
+direct integration gives
+\begin{equation}
+ R(f)=\frac43+\frac12\sum_{j=1}^D a_j^2+
+ \frac1{\pi^2}\sum_{j=1}^D
+       \frac{(-1)^ja_j-a_j^2/4}{j^2}.
+ \label{eq:plus-cosine-energy}
+\end{equation}
+The first and third profiles of \cite{Knausgard2026} have coefficient
+lists, in units of $10^{-6}$,
+\[
+ (193305,-23105,29166,13952,-21009,41052),\qquad
+ (200566,19,-9358,9283,-6746,8170).
+\]
+Rational enclosures in \eqref{eq:plus-cosine-energy} give
+\begin{equation}
+ R_1\le R_1^+:=\frac{666352479141}{500000000000},\qquad
+ R_3\le R_3^+:=\frac{83278977073}{62500000000}.
+ \label{eq:plus-other-energy-caps}
+\end{equation}
+These evaluate the existing profiles more closely; their local
+inequalities are the cited computer-assisted inputs.
+
+For the distinct count the first profile is used with
+\[
+ c=\frac{67}{20},\qquad
+ x_1=\frac{54350}{10^6},\quad
+ x_2=\frac{69433}{10^6},\quad b_1=\frac{37314}{10^6}.
+\]
+If $U$ is the Gram matrix, formed with the smoothed kernel, of real
+locations carrying labels $d_i\in\{1,2\}$, set $G=D^{1/2}UD^{1/2}$, where
+$D=\operatorname{diag}(d_i)$. The labelled input is
+\[
+ \operatorname{tr}\phi_c(G)-\operatorname{tr}D^2
+ \ge x_1n_1+x_2n_2-b_1S-\omega(\varepsilon)(n_1+n_2)-O(1).
+\]
+Here $n_1,n_2$ count simple and double real locations, and
+$\omega(\varepsilon)\to0$; the height limit precedes removal of the
+smoothing. Retain all real locations in the positive part, pinch the
+higher multiplicities into scalar blocks, and leave reflected off-line
+pairs in the remainder.
+Write $h$ for the number of higher-multiplicity real locations and
+$k$ for the number of off-line pairs, so
+$N_{\rm d}=n_1+n_2+h+2k$.
+
+Put
+\[
+ \begin{aligned}
+ \mu&=2-2x_1+x_2,&\nu&=2c-3+x_1-x_2,\\
+ r_h&=6c-7-c^2+x_1-2x_2,&
+ r_k&=4c-2-c^2-2x_1.
+ \end{aligned}
+\]
+Their values are
+\[
+ (\mu,\nu,r_h,r_k)=
+ \left(\frac{1960733}{10^6},\frac{3684917}{10^6},
+       \frac{224123}{125000},\frac{43}{625}\right),
+\]
+all positive. The energy debit is at most
+$(\nu+\mu)n_1+(2\nu+\mu)n_2+c^2(h+k)$.
+It is bounded by $\nu N+\mu N_{\rm d}$: a real location of
+multiplicity $j\ge3$ leaves the nonnegative difference
+$j\nu+\mu-c^2\ge r_h$, and an off-line pair of multiplicity
+$j\ge1$ leaves $2j\nu+2\mu-c^2\ge r_k$.
+The energy budget therefore gives
+\begin{equation}
+ \liminf\frac{N_{\rm d}}N
+ \ge\frac{3-R_1^++x_2-x_1-b_1}{2-2x_1+x_2}
+ =\frac{822532020859}{980366500000}.
+ \label{eq:plus-distinct}
+\end{equation}
+At each location, multiplicity one contributes one to
+$2N_{\rm d}-N$, multiplicity two contributes zero, and higher
+multiplicities contribute negatively. Thus
+$N_{\rm s}\ge2N_{\rm d}-N$, and
+\begin{equation}
+ \liminf\frac{N_{\rm s}}N
+ \ge\frac{332348770859}{490183250000}.
+ \label{eq:plus-simple-anywhere}
+\end{equation}
+This last count includes zeros off the critical line.
+
+\subsection{The union and the full fixed-cutoff hierarchy}
+
+For the remaining counts use the third profile's simple-block floor,
+with
+\begin{equation}
+ a=\frac{54525}{10^6},\qquad b=\frac{37272}{10^6},\qquad
+ \tau=R_3^++b=\frac{85608477073}{62500000000},\qquad
+ \beta=\tau-1-a=\frac{19700664573}{62500000000}.
+ \label{eq:plus-third-budget}
+\end{equation}
+Define
+\begin{equation}
+ c_*=2+\sqrt{2-2a},\qquad
+ Z=\frac{c_*^2}{2}=3-a+2\sqrt{2-2a},\qquad E=\frac\beta Z.
+ \label{eq:plus-excess-budget}
+\end{equation}
+In the finite clipping inequality use equal levels $c_*$. The
+simple-block floor remains valid because $\phi_c(s)$ increases with
+$c$ for $s\ge0$, and $c_*>2$. In terms of $u=N-n$ and
+$e=u-2b_{\rm exc}$, the resulting energy lower bound is
+\[
+ (1+a)N+
+ \left(2c_*-1-a-\frac{c_*^2}{2}\right)u
+ +\frac{c_*^2}{2}e-bS-o(N)-O(1).
+\]
+The coefficient of $u$ vanishes exactly. Consequently
+\begin{equation}
+ \limsup_{T\to\infty}\frac{e(T)}{N(T)}\le E.
+ \label{eq:plus-excess-limit}
+\end{equation}
+As $N-N_{\rm s\cup0}\le2e$, this proves
+\begin{equation}
+ \liminf\frac{N_{\rm s\cup0}}N\ge1-2E
+ =1-\frac{2(\tau-1-a)}{3-a+2\sqrt{2-2a}}.
+ \label{eq:plus-union}
+\end{equation}
+Equivalently, $c_*$ is the largest permissible tangent level for
+which simple off-line pairs still cost at least $1+a$ per unit mass;
+the cost of multiple off-line pairs increases up to that level.
+
+The same excess controls every fixed higher cutoff. A real location
+of multiplicity $j\ge r+1$ has mass-to-excess ratio
+$j/(j-2)\le(r+1)/(r-1)$. A nonreal pair has the smaller ratio
+$j/(j-1)$. Hence, for every fixed integer $r\ge3$,
+\begin{equation}
+ \liminf\frac{M_{\le r}}N
+ \ge1-\frac{r+1}{r-1}E.
+ \label{eq:plus-higher-mass}
+\end{equation}
+This is the retained multiplicity-budget mechanism of
+\cite{Waddle,ChandruP6}, evaluated with \eqref{eq:plus-third-budget}.
+It uses the excess estimate, rather than the union bound alone.
+
+For the corresponding location proportions, and for the stronger
+cutoff-two result, it is useful to give the common accounting once.
+Let $x_j$ count real locations of multiplicity $j$, and $y_j$ count
+reflected pairs of multiplicity $j$ at each member. Then
+\[
+ N=\sum_jjx_j+2\sum_jjy_j,\qquad
+ N_{\rm d}=\sum_jx_j+2\sum_jy_j.
+\]
+Put $h_c(s)=2cs-\phi_c(s)$. Retain all real locations in the positive
+part and pinch their Gram matrix into the simple block and scalar
+multiple-location blocks. For every $c\ge2$, the finite inequality is
+\begin{equation}
+ \operatorname{tr}\mathcal A^2+bS+o(N)+O(1)
+ \ge 2cN-\sum_jh_c(j)x_j-c^2\sum_jy_j+ax_1.
+ \label{eq:plus-multiplicity-master}
+\end{equation}
+All approximation errors can first be included in a fixed upper
+budget $\tau' N$, with $\tau'>\tau$. This also justifies the
+subsequent division by the distinct count.
+
+Set $\alpha=2c-\tau'$ and $\beta'=\tau'-1-a$. Moving the budget
+to the right gives
+\[
+ \sum_j\lambda_jx_j+\sum_j\omega_jy_j\le0,\qquad
+ \lambda_j=\alpha j-h_c(j)+a\mathbf1_{j=1},\quad
+ \omega_j=2\alpha j-c^2.
+\]
+If each low-multiplicity location costs at least $-\beta'$ and each
+high-multiplicity location at least $\gamma_r-\beta'$, then
+\[
+ 0\ge-\beta'N_{\rm d}+\gamma_r(N_{\rm d}-D_{\le r}),
+ \qquad
+ \frac{D_{\le r}}{N_{\rm d}}\ge1-\frac{\beta'}{\gamma_r}.
+\]
+A reflected pair carries two location costs.
+
+For $r\ge3$, choose $c=c_*\in(3,4)$. At the limiting budget,
+$\alpha=Z-\beta$ and
+$2c_*-1-c_*^2/2-a=0$. The real-location costs plus $\beta$ at
+$j=1,2,3$ are respectively
+$0$, $3-\tau-a$, and $8-2\tau-a$.
+For $j\ge4$ the expression is $\alpha j+\beta-c_*^2$.
+The required guards are
+\[
+ \alpha>0,\quad\beta>0,\quad
+ 3-\tau-a>0,\quad8-2\tau-a>0,\quad
+ 4\alpha+\beta-c_*^2=2Z-3\beta>0.
+\]
+They hold here: $a<1/2$, $\tau<7/5$, $0<\beta<1/3$, and
+$Z>9/2$ suffice. The first high real location has cost plus $\beta$
+equal to
+\[
+ \gamma_r=(r+1)\alpha+\beta-c_*^2
+ =Z(r-1-rE)>0.
+\]
+For pairs, the lowest cost plus $2\beta$ is zero at $j=1$,
+and the high-pair cost at $j=r+1$ exceeds $2\gamma_r$ by $c_*^2$;
+all later costs increase. The strict guards persist for
+$\tau'>\tau$ sufficiently close to $\tau$, while the zero guard
+for the simple pair is independent of $\tau'$. Letting
+$\tau'\downarrow\tau$ gives
+\begin{equation}
+ \liminf\frac{D_{\le r}}{N_{\rm d}}
+ \ge1-\frac{E}{r-1-rE}\qquad(r\ge3\text{ fixed}).
+ \label{eq:plus-higher-locations}
+\end{equation}
+These fixed-cutoff consequences are most useful at small cutoffs.
+For sufficiently large cutoffs, the unconditional exponential
+multiplicity estimates of \cite{STT} give stronger mass tails;
+the right side of \eqref{eq:plus-higher-mass} instead tends to $1-E$.
+
+\subsection{Multiplicity at most two and the sharp scalar population}
+
+At $c=3$ the real-location debits in
+\eqref{eq:plus-multiplicity-master} are $5-a$, $8$, and $9$ for
+$j=1$, $j=2$, and $j\ge3$. Every off-line pair has debit nine.
+Since $0\le a\le1/2$, the debit per unit mass at multiplicity at
+most two is at most $5-a$; for the remaining mass it is at most
+three. Therefore
+\begin{equation}
+ \liminf\frac{M_{\le2}}N
+ \ge\frac{3-\tau}{2-a}
+ =\frac{101891522927}{121592187500}.
+ \label{eq:plus-mass-two}
+\end{equation}
+
+For location costs take $\alpha=6-\tau'$,
+$\beta'=\tau'-1-a$, and $\gamma_2=8-2\tau'-a$.
+The sufficient guards are
+\[
+ \beta'\ge0,\quad\alpha>0,\quad
+ 3-\tau'-a\ge0,\quad1-2a\ge0,\quad\gamma_2>0.
+\]
+The real costs satisfy $\lambda_1=-\beta'$,
+$\lambda_2+\beta'=3-\tau'-a\ge0$, and
+$\lambda_j+\beta'-\gamma_2=\alpha(j-3)\ge0$ for $j\ge3$.
+For pairs, $\omega_1+2\beta'=1-2a\ge0$ and
+$\omega_3+2\beta'-2\gamma_2=9$, after which the costs increase.
+All guards are strict at \eqref{eq:plus-third-budget}. The location
+argument followed by $\tau'\downarrow\tau$ gives
+\begin{equation}
+ \liminf\frac{D_{\le2}}{N_{\rm d}}
+ \ge1-\frac{\tau-1-a}{8-2\tau-a}
+ =\frac{101891522927}{108458411118}.
+ \label{eq:plus-locations-two}
+\end{equation}
+
+There is a direct reason that these two expressions fit together.
+Within the scalar orbit accounting of
+\eqref{eq:plus-multiplicity-master}, they are attained simultaneously.
+Assign a fraction
+$\mu=(3-\tau)/(2-a)$ of the mass to simple real locations, and
+the remaining fraction to triple real locations. The energy charge
+is
+\[
+ (1+a)\mu+3(1-\mu)=\tau.
+\]
+The fraction of low-multiplicity locations is then
+\[
+ \frac{\mu}{\mu+(1-\mu)/3}
+ =\frac{3\mu}{1+2\mu}
+ =1-\frac{\tau-1-a}{8-2\tau-a}.
+\]
+This population satisfies every scalar row obtained from
+\eqref{eq:plus-multiplicity-master} by changing $c\ge2$:
+$\phi_c(1)=1$ and $\phi_c(3)\le9$, with equality in the latter
+for $c\ge3$. Its proportions are rational, so a common denominator
+produces integral location counts. Thus changing the clipping level
+alone cannot strengthen these two conclusions within that accounting.
+The population certifies sharpness of the reduced scalar constraints;
+it assigns no Gram interactions between its locations. Additional
+geometric or arithmetic information can impose further constraints.
+
+The rational values in this section and the union radical in
+\eqref{eq:plus-union} determine all entries of
+Table~\ref{tab:plus-counts}. In particular, the larger simple-anywhere
+number, the average number, and the distinct-location number each
+retain their own numerator and denominator throughout the argument.
+
+
+\section{Local slack and continuous payment for long spans}
+\label{sec:rigidity}
+
+\subsection{The fixed local input and its retained slack}
+
+The main numerical bound is now established. We turn to a different
+question: what quantitative information is retained by local slack and
+by pair energy beyond the lags used in a local floor? An explicit
+application uses the second profile of
+\cite[Section 5]{Knausgard2026}:
+\begin{equation}
+ \begin{aligned}
+ f(u)&=1+\sum_{j=1}^{10}a_j\cos(2\pi ju),\\
+ 10^6(a_1,\ldots,a_{10})&=
+ (122290,-45012,16241,1887,2711,3731,\\
+ &\hspace{1.2em}-5307,2982,-5153,5358).
+ \end{aligned}
+ \label{eq:profile-two}
+\end{equation}
+The coefficient absolute sum is $0.210672$, so $f>0$ and $|K_f|\le1$.
+Throughout this section $K=K_f$, $\theta=17/20$, and
+\begin{equation}
+ a=\frac{8722}{10^6},\quad \alpha=\frac{627}{10^6},\quad
+ b=7\alpha=\frac{4389}{10^6},\quad
+ d_0=\frac{10016}{10^6},\quad
+ B_0=7a+\frac{3882}{10^6}.
+ \label{eq:base-constants}
+\end{equation}
+The public eight-point certificate, with weights and bounded corrections
+listed in Appendix~\ref{app:local-data}, says that for every seven-gap
+frame with gaps at least $\theta$,
+\begin{equation}
+ F_i:=\alpha(y_{i+7}-y_i)+
+ \sum_{0\le r<s\le7}W_{rs}K(y_{i+s}-y_{i+r})^2
+ +\sum_{r=0}^6B_r(g_{i+r})\ge a.
+ \label{eq:local-floor}
+\end{equation}
+Its validity is the imported computer-assisted input
+\cite[Proposition 5.3]{Knausgard2026}. Define
+$\ell_i=F_i-a\ge0$ and $H=\sum_i\ell_i$ over all complete frames.
+With ordered short-band energy
+\[
+ E_s=2\sum_{h=1}^7\sum_iK(y_{i+h}-y_i)^2,
+\]
+the pair-capacity sums are at most two. The spread charge sums to at
+most $7\alpha S$; the bounded corrections telescope with loss at most
+$3882/10^6$. Retaining, rather than dropping, the slack gives
+\begin{equation}
+ E_s\ge am-bS-B_0+H,\qquad
+ \ell_i\ge\alpha(y_{i+7}-y_i)-d_0.
+ \label{eq:retained-slack}
+\end{equation}
+The second inequality uses nonnegative pair weights and
+$\sum_r\min B_r=-1294/10^6$. For fewer than eight points take
+$H=0$; the first inequality still holds because $B_0\ge7a$.
+
+\subsection{A general phase comparison}
+
+The mechanism is more general than these data. Let $K$ be real-valued
+on the real axis. Suppose frames of $h$
+gaps have nonnegative slack satisfying
+$\ell_i\ge\alpha(y_{i+h}-y_i)-d_0$, with $\alpha>0$.
+Assume gaps are at least $\theta>0$ and
+\begin{equation}
+ |K(t)|\ge\frac{h_0|\sin\pi t|}{\pi t}\quad(t\ge t_0),
+ \qquad h_0>0.
+ \label{eq:tail-hypothesis}
+\end{equation}
+Choose finitely many integer lags $l\ge h$ with $l\theta\ge t_0$
+and nonnegative weights $w_l$ satisfying
+\begin{equation}
+ |e^{ix}-1|^2\le\sum_lw_l|e^{ilx}-1|^2\quad(x\in\R).
+ \label{eq:phase-comparison}
+\end{equation}
+Put $q_l=\lceil l/h\rceil$ and choose positive numbers
+\begin{equation}
+ R_l\ge q_ld_0/\alpha-(hq_l-l)\theta.
+ \label{eq:cover-radius}
+\end{equation}
+Writing $T=2\sum_l\sum_i K(y_{i+l}-y_i)^2$, one obtains
+\begin{equation}
+ \sum_i\dist(g_i,\Z)^2\le M_ET+M_HH+B_1,
+ \label{eq:general-rigidity}
+\end{equation}
+where
+\begin{equation}
+ M_E=\max_l\frac{w_l\pi^2R_l^2}{8h_0^2},\qquad
+ M_H=\sum_l\frac{w_lq_l}{2\alpha R_l},\qquad
+ B_1=\frac18\sum_lw_ll.
+ \label{eq:prices}
+\end{equation}
+Here and below empty sums are zero.
+
+To prove this, set $c(t)=|e^{2\pi it}-1|^2\le4$.
+For every $R>0$ and every $t\ge t_0$, \eqref{eq:tail-hypothesis} gives
+\begin{equation}
+ c(t)\le\frac{4\pi^2R^2}{h_0^2}K(t)^2+
+ \frac8R(t-R)_+.
+ \label{eq:continuous-payment}
+\end{equation}
+For $t\le R$ the first term suffices. For $t>R$ it pays at least
+$c(t)R^2/t^2$; the remainder is at most
+$4(1-R^2/t^2)\le8(t-R)/R$.
+
+A lag-$l$ edge is covered by the $q=q_l$ complete frame starts
+$0,h,\ldots,(q-2)h,l-h$ relative to its anchor, with a single frame
+when $l=h$. There are exactly $hq-l$ repeated gap incidences.
+Since each gap is at least $\theta$, the sum $L_i$ of the cover slacks
+satisfies
+\[
+ L_i\ge0,\qquad
+ L_i\ge\alpha t+\alpha(hq-l)\theta-qd_0
+ \ge\alpha(t-R_l).
+\]
+Each fixed frame occurs in at most $q_l$ translated covers for that lag.
+Summing \eqref{eq:continuous-payment} over its anchors consequently gives
+\begin{equation}
+ \sum_i c(y_{i+l}-y_i)
+ \le\frac{4\pi^2R_l^2}{h_0^2}\sum_iK(y_{i+l}-y_i)^2
+ +\frac{8q_l}{\alpha R_l}H.
+ \label{eq:covered-chords}
+\end{equation}
+All frames lie inside their edge, and every physical span is included.
+
+Now extend $z_i=e^{2\pi iy_i}$ by zero outside the finite configuration.
+Parseval applies \eqref{eq:phase-comparison} to its discrete differences.
+For lag $l$ the zero extension adds $2\min(l,m)\le2l$ unit boundary
+terms. Dropping the favorable nearest-neighbor boundary gives
+\[
+ \sum_i|z_{i+1}-z_i|^2
+ \le\sum_lw_l\sum_i|z_{i+l}-z_i|^2+2\sum_lw_ll.
+\]
+Finally $\dist(g,\Z)^2\le|e^{2\pi ig}-1|^2/16$.
+Insert \eqref{eq:covered-chords} and retain the factor two in the
+ordered energy $T$ to obtain \eqref{eq:general-rigidity}.
+
+There is a simple uniform family of phase comparisons. On $[r,2r]$
+take endpoint weights $2/r$ and interior weights $4/r$.
+For the unitary shift $V$,
+$V-I=(V^{l+1}-I)-V(V^l-I)$; the squared triangle inequality averaged
+over $r\le l<2r$ proves \eqref{eq:phase-comparison}. The weight sum
+is four and its first moment is $6r$. If $d_0>0$, the choice
+$R_l=q_ld_0/\alpha$ gives
+\begin{equation}
+ M_H=2/d_0,\qquad
+ M_E\le\frac{\pi^2d_0^2\lceil2r/h\rceil^2}
+ {2h_0^2\alpha^2r},\qquad B_1=3r/4.
+ \label{eq:linear-horizon}
+\end{equation}
+Thus the energy price grows at most linearly in $r$, while the slack
+price is independent of $r$. If the local floor spends every lag through
+$h$, take $r>h$ before adding $T$ to that floor.
+
+For degree-$D$ cosine profiles with
+$\sum|a_j|\le A_0$ and $f(1/2)\ge v_0>0$, the rational sinc factor
+satisfies
+\[
+ V(t^2)=f(1/2)+\sum_{j=1}^D(-1)^ja_j\frac{j^2}{t^2-j^2},\qquad
+ |V(t^2)-f(1/2)|\le2A_0D^2/t^2\quad(t^2\ge2D^2).
+\]
+Hence $h_0=v_0/2$ is available beyond
+$D\max(\sqrt2,2\sqrt{A_0/v_0})$. More precisely, if
+$h,\theta,\alpha,d_0,A_0,v_0$ are fixed, with
+$\theta,\alpha,d_0,v_0>0$, a family satisfying the stated frame
+hypothesis permits $r>h$ with $r\theta$ beyond that threshold and
+$r=O(D)$ for $D\ge1$. Formula~\eqref{eq:linear-horizon} then gives
+an $O(D)$ energy price and a constant slack price.
+Each profile and its finite lag set are fixed before the height limit.
+
+\subsection{An exact finite instance}
+
+For \eqref{eq:profile-two}, write $c_j=(-1)^ja_j$ and
+$z_0=(51/5)^2$. Its sinc factor is
+\[
+ K(t)=\frac{\sin\pi t}{\pi t}V(t^2),\qquad
+ V(z)=1+\sum_{j=1}^{10}c_j\frac{z}{z-j^2}.
+\]
+For negative $c_j$ use the value at $z_0$; for positive $c_j$ use
+the limiting value $c_j$. This proves, for $t\ge51/5$,
+\begin{equation}
+ V(t^2)\ge\frac{3123731672835001}{3750959784000000}
+ >\frac{104}{125}=:h_0.
+ \label{eq:tail-factor}
+\end{equation}
+Take
+\begin{equation}
+ \mathcal L=\{12,\ldots,49\},\quad q_l=\lceil l/7\rceil,\quad
+ R_l=\frac{201q_l+17l}{20},\quad
+ w_l=\frac{196}{R_l^2}.
+ \label{eq:lag-data}
+\end{equation}
+The identity $R_l=16q_l-(7q_l-l)\theta$ and
+$16>d_0/\alpha=10016/627$ verify \eqref{eq:cover-radius}.
+The phase comparison is certified by the polynomial
+\begin{equation}
+ P(t)=\frac{\sum_{l=12}^{49}w_l(1-T_l(t))-(1-t)}{1-t},
+ \label{eq:phase-polynomial}
+\end{equation}
+where $T_l$ is the Chebyshev polynomial. Its numerator vanishes at one,
+so $P$ has degree 48. All 49 Bernstein coefficients on each of the
+following intervals exceed the displayed rational bound:
+\begin{table}[htbp]
+\centering
+\caption{Certified lower bounds for every Bernstein coefficient of the
+phase polynomial on six intervals.}
+\label{tab:phase-bounds}
+\begin{tabular}{cc}
+\toprule Interval & Lower bound\\\midrule
+$[-1,-3/4]$ & $164977/50000000$\\
+$[-3/4,-1/2]$ & $255867387/1000000000$\\
+$[-1/2,0]$ & $370473121/1000000000$\\
+$[0,1/2]$ & $207778923/200000000$\\
+$[1/2,3/4]$ & $743826529/250000000$\\
+$[3/4,1]$ & $1129786507/125000000$\\\bottomrule
+\end{tabular}
+\end{table}
+The nonnegative Bernstein basis proves $P\ge0$ on $[-1,1]$ and
+therefore \eqref{eq:phase-comparison} on the whole real line.
+Appendix~\ref{app:arithmetic} specifies the exact basis conversion.
+The prices in \eqref{eq:prices}, using $\pi<22/7$, satisfy
+\begin{equation}
+ M_E<\frac{1890625}{5408}<350,\qquad
+ M_H<112,\qquad B_1<6.
+ \label{eq:frozen-prices}
+\end{equation}
+With $J=H+T$, \eqref{eq:general-rigidity} gives
+\eqref{eq:intro-rigidity}. The unused lags $12$--$49$ are disjoint
+from the paid lags $1$--$7$, so $D=E_s+T$ also satisfies
+\begin{equation}
+ D\ge am-bS-B_0+J.
+ \label{eq:retained-J}
+\end{equation}
+
+\subsection{A signed pressure row for the retained phase resource}
+\label{sec:bootstrap}
+
+
+For every $g\ge17/20$ we prove
+\begin{equation}
+ 2K(g)^2+pg+C\dist(g,\Z)^2\ge c,
+ \qquad p=\frac{17}{4000},\quad C=\frac{19}{4},\quad
+ c=\frac{1891}{200000}.
+ \label{eq:pressure}
+\end{equation}
+The profile bound $f\le1.210672$ gives
+$|K''|\le\pi^2(1.210672)/3<4$.
+The sinc expansion
+\[
+ K(t)=\sinc t+\tfrac12\sum_{j=1}^{10}a_j
+ \{\sinc(t-j)+\sinc(t+j)\},\qquad
+ \sinc t=\frac{\sin\pi t}{\pi t},
+\]
+gives the exact values
+\begin{center}
+\begin{tabular}{ccc}
+\toprule $k$ & $K(k)$ & $K'(k)$\\\midrule
+$1$ & $12229/200000$ & $-260321359/264000000$\\
+$2$ & $-11253/500000$ & $2577793683/6160000000$\\\bottomrule
+\end{tabular}
+\end{center}
+Write $A_k=|K(k)|$, $B_k=|K'(k)|$ and take
+$r_1=1/20$, $r_2=1/25$. At both integers the signed derivative of
+$|K|$ is negative. Taylor's formula gives, for $d\ge0$,
+\[
+ \operatorname{sign}(K(k))K(k+d)\ge A_k-B_kd-2d^2,
+ \qquad
+ \operatorname{sign}(K(k))K(k-d)\ge A_k+B_kd-2d^2.
+\]
+On $0\le d\le r_k$ the first right side is positive. For $g=k+d$
+the left side of \eqref{eq:pressure} minus $c$ is at least
+\[
+ q_0+q_1d+q_2d^2+8B_kd^3+8d^4,
+ \quad q_0=2A_k^2+pk-c,\quad
+ q_1=-4A_kB_k+p,\quad q_2=2B_k^2-8A_k+C.
+\]
+Here $q_2>0$ and the exact positive margins $4q_0q_2-q_1^2$ are
+\begin{equation}
+ \frac{53039685134812231}{193600000000000000000},\qquad
+ \frac{23907572162979771241}{948640000000000000000000}
+ \label{eq:discriminants}
+\end{equation}
+for $k=1,2$. Completing the quadratic square proves the right-hand
+inner intervals. On the left,
+$|K(k-d)|\ge A_k+(B_k-2r_k)d$ and
+\[
+ 2K(k-d)^2+p(k-d)+Cd^2-c
+ \ge q_0+\{4A_k(B_k-2r_k)-p\}d.
+\]
+The two linear coefficients are respectively
+\[
+ \frac{2804524299211}{13200000000000},\qquad
+ \frac{1835448537709}{70000000000000},
+\]
+both positive.
+
+For $r_k\le d\le1/2$, discard the kernel term. The lower expression
+$p(k-d)+Cd^2-c$ increases with $d$ and at the two cutoffs equals
+$2583/400000$ and $259/40000$. If a nearest integer is at least
+three, then $g\ge5/2$ and $pg>c$. These cases cover every permitted
+gap, including half-integer ties, and prove \eqref{eq:pressure}
+without sampled-grid acceptance.
+
+\subsection{Cancellation of a single retained resource}
+
+The following algebra explains the role of phase rigidity. Suppose
+$D\ge am-bS-B_0+J$, $J\ge0$, and
+$\sum\dist(g_i,\Z)^2\le MJ+B_1$, while
+$D\ge2\sum_iK(g_i)^2$. Summing a row of the form
+\eqref{eq:pressure} gives the alternative bound
+\[
+ D\ge cm-pS-c-CB_1-MCJ.
+\]
+Taking convex weights $MC/(1+MC)$ and $1/(1+MC)$ cancels $J$.
+The resulting coefficients are
+\begin{equation}
+ a'=a+\frac{c-a}{1+MC},\qquad
+ b'=b+\frac{p-b}{1+MC},\qquad
+ B'=\frac{MCB_0+c+CB_1}{1+MC}.
+ \label{eq:bootstrap}
+\end{equation}
+This combines alternative bounds on the same energy; it does not add
+overlapping pair resources.
+
+For $M=350$, $B_1=6$ and \eqref{eq:pressure},
+$1+MC=3327/2$ and
+\begin{equation}
+ D\ge a_\star m-b_\star S-B_\star,\qquad
+ B_\star=\frac{27293111}{332700000},
+ \label{eq:final-floor}
+\end{equation}
+where
+\[
+ a_\star=\frac{725489}{83175000},\qquad
+ b_\star=\frac{584077}{133080000}.
+\]
+There are 45 retained index bands. Under
+$\sup|K_\varepsilon-K|\le\eta\le1$,
+$|K_\varepsilon^2-K^2|\le3\eta$.
+Keep $J$ defined on the original kernel. The first floor loses at
+most $270\eta m$; the adjacent-gap row loses at most $6\eta m$.
+Their same convex combination therefore gives
+\begin{equation}
+ D(K_\varepsilon)\ge
+ \left(a_\star-\frac{299254}{1109}\eta\right)m
+ -b_\star S-B_\star.
+ \label{eq:final-smoothing}
+\end{equation}
+
+The imported majorant for this profile has
+$\Lambda=1.78942\ldots<2$, and the near-pair bound is
+$\beta=13707941/2^{28}>a_\star$ \cite[Section 5]{Knausgard2026}.
+Choose $\eta<(\beta-a_\star)/3$. Each removed pair pays more than
+$2a_\star$, the separated block is unclipped, and $b_\star>0$.
+The matching argument of Section~\ref{sec:am-transfer} transfers
+\eqref{eq:final-smoothing} to every real configuration. The coefficients
+satisfy $a_\star>a$ and $0<b_\star<b$: the same local input has acquired
+a larger point reward and a smaller spread cost. This is a quantitative
+use of the retained phase resource, for the profile
+\eqref{eq:profile-two}; it is not an additional gain in
+\eqref{eq:intro-main}, which uses a different profile.
+
+\section{A common residual for joint affine deductions}
+\label{sec:structural}
+
+The phase comparison retains local slack and unused pair energy
+on the same configuration.
+We now ask what can be deduced when the retained information has
+already been reduced to universal affine floors. The distinction is
+between precisely specified sets of inequalities, not between
+different assertions about the zeros themselves.
+
+\subsection{The relaxation being tested}
+
+Continue to write $I=[-1/2,1/2]$. For a real function $f\in L^2(I)$,
+extended by zero, put
+\begin{equation}
+ \begin{split}
+ A(f)&=\int_I f(s)^2\dd s,\\
+ J(f)&=\iint_{I^2}|s-t|f(s)f(t)\dd s\dd t,\\
+ C_h(f)&=\int_{\R}f(s)f(s+h)\dd s,\qquad R(f)=A(f)+J(f).
+ \end{split}
+ \label{eq:structural-forms}
+\end{equation}
+The variational arguments will allow signed real functions with
+$\int f=1$. A profile used in a Gram matrix is nonnegative; an analytic
+profile is also even and is subject to the fixed-test approximation in
+Section~\ref{sec:interface}. Bounds proved on this larger space
+apply in particular to the nonnegative subclass.
+
+For a normalized nonnegative profile let
+$G_f=(K_f(x_j-x_k))_{j,k=1}^n$ on a real configuration.
+It is a positive semidefinite Hermitian matrix with unit diagonal,
+including when $f$ is not even. For $t\ge0$ define
+\begin{equation}
+ D_t(G_f)=
+ \tr\bigl((G_f-I)^2-(G_f-(1+t)I)_+^2\bigr).
+ \label{eq:structural-defect}
+\end{equation}
+The scalar function in this definition is nonnegative on $[0,\infty)$,
+and the subtracted square is nonnegative. Therefore
+\begin{equation}
+ 0\le D_t(G_f)\le\tr(G_f-I)^2
+ =\sum_{j\ne k}|K_f(x_j-x_k)|^2.
+ \label{eq:defect-frobenius}
+\end{equation}
+Since $\tr G_f=n$, we also have
+$D_t(G_f)=\tr\phi_{1+t}(G_f)-n$.
+
+Let $b_{\rm exc}$ count the exceptional conjugacy orbits:
+one for each multiple real location and one for each nonreal pair.
+The orbit argument in Section~\ref{sec:interface} gives
+$n_+(Q)\le b_{\rm exc}$ when the simple-real part is removed.
+In \eqref{eq:two-level} take the two levels equal to $\Gamma/2$,
+where $\Gamma\ge2$. It follows that
+\begin{equation}
+ \tr\mathcal A_f^2
+ \ge\Gamma N-(\Gamma-1)n-\frac{\Gamma^2}{4}b_{\rm exc}
+       +D_{\Gamma/2-1}(G_f).
+ \label{eq:structural-inertia}
+\end{equation}
+This is the compensated inertia inequality of \cite{ChandruP6}.
+It uses the same original multiset in every profile realization.
+The exceptional-orbit count is common to the inequalities;
+no rank statement for a sum of different profile operators is assumed.
+
+Write the normalized omitted mass and excess as
+\begin{equation}
+ u=\frac{N-n}{N},\qquad
+ e=\frac{N-n-2b_{\rm exc}}N,\qquad 0\le e\le u\le1.
+ \label{eq:normalized-excess}
+\end{equation}
+When passing to limiting rows, take a common convergent subsequence
+of these bounded ratios and use the same symbols for its limit.
+This preserves one count point while the fixed-test error terms
+vanish.
+Nonnegativity of $e$ follows orbit by orbit: a multiple real location
+of multiplicity $k$ contributes $k-2$, and a nonreal pair with
+multiplicity $j$ at each member contributes $2(j-1)$.
+
+A row consists of finitely many fixed profiles $f_i$,
+weights $w_i\ge0$ with $\sum_iw_i=1$, and fixed thresholds
+$\Gamma_i\ge2$. Its finite hypothesis is a genuinely joint floor
+\begin{equation}
+ \sum_iw_iD_{\Gamma_i/2-1}(G_{f_i})
+ \ge an-dS-B,\qquad d\ge0,
+ \label{eq:joint-affine-floor}
+\end{equation}
+valid on every real configuration of size $n$ and span $S$, with
+$B$ independent of $n$. The same points occur in every matrix.
+No decomposition into separately minimized floors is required.
+All parameters, including the finite family and endpoint constant,
+are fixed before the height limit.
+
+Average \eqref{eq:structural-inertia} with these weights.
+The trace formula and span bound of Section~\ref{sec:interface}
+give the normalized necessary row
+\begin{equation}
+ \overline R+d\ge
+ (1-u)(1+a)+\overline\Gamma u
+ -\frac{u-e}{8}\sum_iw_i\Gamma_i^2,
+ \quad
+ \overline R=\sum_iw_iR(f_i),\quad
+ \overline\Gamma=\sum_iw_i\Gamma_i.
+ \label{eq:joint-master-row}
+\end{equation}
+The sign $d\ge0$ is needed when replacing $S/N$ by its upper limit
+one. For this analytic implication each profile is a fixed admissible
+smooth test, or a limit of such tests for which the finite-floor
+error is uniform in the configuration and any required norm control
+has been proved separately, as in Section~\ref{sec:interface}.
+Continuity of matrix entries and spectral positive parts passes
+such a common finite floor to its $L^2$ limit on each fixed
+configuration. It does not transfer an arbitrary unsmoothed floor
+back to its approximants uniformly in the number of points.
+The periodic and variational arguments below are valid for all
+$L^2$ profiles without this additional analytic admissibility issue.
+
+The relaxation studied here retains any collection of rows
+\eqref{eq:joint-master-row}, their common count variables, and the
+orbit accounting for the desired statistic. Each row may have its
+own profiles, weights, slope and thresholds. It does not automatically
+retain labelled-block inequalities, square-completion slack, signed
+identities between exact energies, products of operators, or further
+arithmetic information. The conclusions concern precisely this
+relaxation. They impose neither an upper bound on an actual
+zero proportion nor a ceiling on every deduction from pair correlation.
+In particular they do not apply to the labelled distinct-zero scheme
+merely by changing the numerator.
+
+\subsection{Periodic tests without a regularity assumption}
+
+Take $p$ distinct points $x_1,\ldots,x_p$ modulo a period $L>0$.
+Their full periodic energy per point, including the diagonal, is
+\begin{equation}
+ Q_{L,x}(f)=\frac1p\sum_{a,b=1}^p\sum_{k\in\Z}
+ |K_f(x_b-x_a+kL)|^2.
+ \label{eq:periodic-full-energy}
+\end{equation}
+The sampling identity is valid for every real $L^2$ profile.
+With the Fourier convention \eqref{eq:normalization},
+periodize $f(s)e^{2\pi ids}$ on an interval of length $1/L$:
+\[
+ P_d(s)=\sum_{\nu\in\Z}
+ f(s+\nu/L)e^{2\pi id(s+\nu/L)},\qquad 0\le s<1/L.
+\]
+Only finitely many translates overlap, so $P_d\in L^2$.
+Its normalized Fourier coefficient of index $k$ is $LK_f(d-kL)$.
+Parseval therefore gives
+\[
+ \sum_k|K_f(d+kL)|^2
+ =\frac1L\int_0^{1/L}|P_d(s)|^2\dd s.
+\]
+Expand the square, group by the difference of the translate indices,
+and sum over $d=x_b-x_a$. This proves
+\begin{equation}
+ Q_{L,x}(f)=\frac1{pL}\sum_{j\in\Z}
+ \left|\sum_{a=1}^p e^{2\pi ijx_a/L}\right|^2 C_{j/L}(f).
+ \label{eq:periodic-autocorrelation}
+\end{equation}
+This is a finite sum, since $C_h(f)=0$ for $|h|\ge1$.
+There is no endpoint term at $|h|=1$, where the supports intersect
+only on a null set. For an integer period it becomes
+\begin{equation}
+ Q_{L,x}(f)=\frac1{pL}\left\{
+ p^2A(f)+2\sum_{1\le j<L}
+ \left|\sum_{a=1}^pe^{2\pi ijx_a/L}\right|^2C_{j/L}(f)\right\}.
+ \label{eq:integer-period-energy}
+\end{equation}
+This uses Hilbert-space Parseval rather than a pointwise
+Poisson-summation or Fourier-decay assertion.
+
+Apply \eqref{eq:joint-affine-floor} to $M$ consecutive periods.
+Their span divided by their number of points tends to $L/p$.
+Their off-diagonal square energy per point tends to $Q_{L,x}(f)-1$:
+each fixed displacement occurs with a weight tending to one and
+bounded by one, while Parseval supplies the summable majorant.
+Consequently \eqref{eq:defect-frobenius} gives
+\begin{equation}
+ a\le\sum_iw_i\{Q_{L,x}(f_i)-1\}+dL/p.
+ \label{eq:periodic-floor-test}
+\end{equation}
+We may average finitely many such inequalities with nonnegative
+weights. This does not require concatenating the periodic states
+or realizing their mixture as a single zero process.
+
+\subsection{The residual identity and its quantifiers}
+
+Fix $0<u<1$, put $q=1-u$, and choose a finite mixture of periodic
+states whose average gap is $1/q$. Let $Q_q(f)$ be its mixture
+of full per-point energies. For a row define
+\begin{equation}
+ \mathcal F_q(f)=R(f)-qQ_q(f),\qquad
+ \sigma=\sum_iw_i\{Q_q(f_i)-1\}+d/q-a.
+ \label{eq:periodic-slack}
+\end{equation}
+Equation \eqref{eq:periodic-floor-test} gives $\sigma\ge0$.
+Let $\operatorname{Res}$ be the left side of
+\eqref{eq:joint-master-row} minus its right side. Substitution gives
+the exact identity, valid also at $e=u$,
+\begin{equation}
+ \operatorname{Res}
+ =\sum_iw_i\left\{\mathcal F_q(f_i)-\Gamma_i u
+                    +\frac{\Gamma_i^2}{8}(u-e)\right\}+q\sigma.
+ \label{eq:residual-uncompleted}
+\end{equation}
+For $0\le e<u$, completion of each scalar square gives
+\begin{equation}
+ \begin{split}
+ \operatorname{Res}={}&
+ \sum_iw_i\mathcal F_q(f_i)-\frac{2u^2}{u-e}\\
+ &+\frac{u-e}{8}\sum_iw_i
+       \left(\Gamma_i-\frac{4u}{u-e}\right)^2+q\sigma.
+ \end{split}
+ \label{eq:general-periodic-residual}
+\end{equation}
+The optimizing threshold $4u/(u-e)\ge4$ is permitted.
+At $e=0$ its contribution is $(u/8)\sum_iw_i(\Gamma_i-4)^2$.
+
+Suppose $\mathcal F_q$ has a minimizer $f_q^\dagger$
+on the real affine space $\int f=1$, with minimum $m_q$, and
+\[
+ \mathcal F_q(h)\ge\kappa_q\|h\|_2^2
+ \quad\left(\int h=0\right),\qquad\kappa_q>0.
+\]
+Stationarity makes the linear cross term vanish:
+\begin{equation}
+ \mathcal F_q(f)=m_q+\mathcal F_q(f-f_q^\dagger).
+ \label{eq:general-variational-defect}
+\end{equation}
+Thus every row is satisfied at the same count point whenever
+\begin{equation}
+ m_q\ge\frac{2u^2}{u-e}.
+ \label{eq:general-count-frontier}
+\end{equation}
+The residual retains exactly the profile departure, threshold
+departure and periodic-test slack; its profile contribution is at
+least $\kappa_q\sum_iw_i\|f_i-f_q^\dagger\|_2^2$.
+
+The common point makes the obstruction simultaneous.
+The mixture and $(u,e)$ are fixed before a row is chosen; only
+the nonnegative slack $\sigma$ depends on that row.
+Arbitrarily many already valid limiting rows can therefore be
+retained together. This does not establish height-uniform control
+for a growing family of tests or growing thresholds.
+
+No division by $u-e$ is made at $e=u$:
+\eqref{eq:residual-uncompleted} remains the appropriate formula.
+A point with $e=u>0$ cannot survive the complete collection of
+all-threshold rows. Indeed fix one admissible profile and use
+$D_{\Gamma/2-1}\ge0$, so $a=d=B=0$. Its row requires
+$R(f)\ge1-u+\Gamma u$ for every fixed $\Gamma\ge2$, which is
+impossible as $\Gamma$ increases. The endpoint $u=e=0$
+is tested directly in \eqref{eq:joint-master-row} and is not
+represented by the quotient in \eqref{eq:general-count-frontier}.
+
+\section{An explicit two-lattice variational frontier}
+\label{sec:two-lattice}
+
+The simplest density-balanced mixture gives an exact two-count
+model and a quantitative rigidity identity. Its simple-critical
+endpoint is less restrictive numerically than the construction
+of Section~\ref{sec:twelve-fibre}, but the whole frontier has
+a closed form and applies to the union count.
+
+\subsection{The quadratic form and its coercivity}
+
+The unit lattice and the lattice of spacing two have full energies
+$A(f)$ and $A(f)/2+C_{1/2}(f)$, respectively.
+For $1/8\le u\le1/3$, put $q=1-u$ and give the unit lattice
+weight $\theta=2-1/q$. Then
+$\theta+2(1-\theta)=1/q$, and the quadratic form is
+\begin{equation}
+ F_u(f)=J(f)+\frac{3u}{2}A(f)-uC_{1/2}(f).
+ \label{eq:two-lattice-form}
+\end{equation}
+Its unique normalized real minimizer will be positive and even,
+with minimum
+\begin{equation}
+ m(u)=\frac12+u\{\alpha\cot\alpha-2\beta\tan\beta\},
+ \qquad
+ \alpha=\frac1{2\sqrt{2u}},\quad
+ \beta=\frac1{4\sqrt u}.
+ \label{eq:two-lattice-minimum}
+\end{equation}
+The estimate needed down to $u=1/8$ is
+\begin{equation}
+ F_u(h)\ge\left(u-\frac18+\frac1{1000}\right)\|h\|_2^2
+ \qquad\left(\int_Ih=0\right).
+ \label{eq:two-lattice-coercivity}
+\end{equation}
+
+To prove it put $H(s)=\int_{-1/2}^sh(t)\dd t$.
+Both endpoint values of $H$ vanish. For
+$g_h(s)=\int|s-t|h(t)\dd t$, one has $g_h'=2H$;
+integration by parts gives
+\begin{equation}
+ J(h)=-2\int_IH(s)^2\dd s.
+ \label{eq:primitive-negative-energy}
+\end{equation}
+Let $B$ be half the measure-preserving half-interval swap:
+$(Bh)(s)=h(s+1/2)/2$ for $s<0$ and
+$(Bh)(s)=h(s-1/2)/2$ for $s>0$.
+Then $B=B^*$, $B^2=I/4$, and
+$C_{1/2}(h)=\langle h,Bh\rangle$.
+The forms $A,J,C_{1/2}$ preserve reflection parity,
+so their even--odd cross terms vanish.
+
+If $h$ is even and zero-mean, its primitive also vanishes at zero.
+Poincare's inequality on each half-interval gives
+$J(h)\ge-\|h\|_2^2/(2\pi^2)$.
+Since $C_{1/2}(h)\le A(h)/2$,
+\[
+ F_{1/8}(h)\ge
+ \left(\frac18-\frac1{2\pi^2}\right)\|h\|_2^2
+ >\frac1{1000}\|h\|_2^2.
+\]
+For odd $h$, write $h=t\psi+v$ with
+$\psi(s)=\sqrt2\sin(\pi s)$ and $v\perp\psi$ odd.
+The odd Neumann basis consists of
+$\sqrt2\sin((2j+1)\pi s)$, $j\ge0$.
+Its primitives are orthogonal Dirichlet modes of squared norm
+$1/((2j+1)^2\pi^2)$. Hence
+\[
+ J(h)\ge-\frac2{\pi^2}t^2-\frac2{9\pi^2}\|v\|_2^2.
+\]
+Direct integration and $B^2=I/4$ give
+\[
+ \langle\psi,B\psi\rangle=-1/\pi,\qquad
+ \|B\psi+\psi/\pi\|_2^2=1/4-1/\pi^2.
+\]
+Using $\langle v,Bv\rangle\le\|v\|_2^2/2$ now yields
+\[
+ F_{1/8}(h)\ge a_0t^2+b_0\|v\|_2^2-2c_0|t|\|v\|_2,
+\]
+where
+\[
+ a_0=\frac3{16}+\frac1{8\pi}-\frac2{\pi^2},\quad
+ b_0=\frac18-\frac2{9\pi^2},\quad
+ c_0^2=\frac1{64}\left(\frac14-\frac1{\pi^2}\right).
+\]
+For a rational positivity check put $\pi_L=157/50$, $\pi_U=22/7$,
+\[
+ a_L=\frac3{16}+\frac1{8\pi_U}-\frac2{\pi_L^2},\quad
+ b_L=\frac18-\frac2{9\pi_L^2},\quad
+ c_U^2=\frac1{64}\left(\frac14-\frac1{\pi_U^2}\right).
+\]
+Both $a_L-1/1000$ and $b_L-1/1000$ are positive, and
+\[
+ (a_L-1/1000)(b_L-1/1000)-c_U^2
+ =\frac{17310471944257}{330823607944500000}>0.
+\]
+The two-by-two form is therefore at least
+$(t^2+\|v\|_2^2)/1000$. This proves the estimate at $u=1/8$.
+Finally
+\[
+ F_u(h)-F_{1/8}(h)
+ =(u-1/8)\{3A(h)/2-C_{1/2}(h)\}
+ \ge(u-1/8)A(h),
+\]
+which proves \eqref{eq:two-lattice-coercivity}.
+
+\subsection{The minimizer and its exact defect}
+
+With $\alpha,\beta$ as in \eqref{eq:two-lattice-minimum}, set
+$p=\alpha/\sin\alpha$ and $z=-\beta/\cos\beta$, and define
+\begin{equation}
+ f_u(s)=p\cos\bigl(\sqrt{2/u}(|s|-1/4)\bigr)
+       +z\sin\bigl((|s|-1/4)/\sqrt u\bigr).
+ \label{eq:two-lattice-profile}
+\end{equation}
+The sine term integrates to zero on each half-interval, and
+$4p\sin\alpha/\sqrt{2/u}=1$, so $\int f_u=1$.
+For $g(s)=\int|s-t|f_u(t)\dd t$ the Euler expression on
+$0<s<1/2$ is
+\[
+ L(s)=3u f_u(s)-u f_u(1/2-s)+2g(s).
+\]
+The cosine component is symmetric about $1/4$ and solves
+$2u w''+4w=0$; the sine component is antisymmetric and solves
+$4u w''+4w=0$. As $g''=2f_u$, these imply $L''=0$.
+The endpoint derivatives are
+$f_u'(0+)=1/(4u)$ and $f_u'(1/2-)=-3/(4u)$.
+Together with $g'(0)=0$ they give $L'(0+)=0$.
+Thus $L$ is constant on the positive half. Reflection makes the
+same constant valid on the negative half, establishing
+stationarity against all real zero-mean perturbations.
+
+Coercivity gives unique global minimality. At $s=1/2$,
+evenness and normalization imply $g(1/2)=1/2$.
+Multiplication of the Euler equation by $f_u$ and integration
+show that its constant is $2F_u(f_u)$.
+Endpoint evaluation gives \eqref{eq:two-lattice-minimum}.
+Stationarity also proves, for every real normalized $f$,
+\begin{equation}
+ F_u(f)=m(u)+F_u(f-f_u).
+ \label{eq:two-lattice-exact-defect}
+\end{equation}
+
+To prove positivity, write $x=s-1/4$ on the positive half.
+For $x\ge0$ both derivative terms in
+\eqref{eq:two-lattice-profile} are nonpositive, and
+$f_u(1/4-x)\ge f_u(1/4+x)$. The minimum is consequently
+\[
+ f_u(1/2)=\alpha\cot\alpha-\beta\tan\beta.
+\]
+At $u=1/8$ the arguments are $1$ and $1/\sqrt2$.
+Alternating Taylor bounds give
+\[
+ \cos1\ge389/720,\quad \sin1\le101/120,\quad
+ \frac{\sin(1/\sqrt2)}{1/\sqrt2}\le147/160,\quad
+ \cos(1/\sqrt2)\ge4379/5760.
+\]
+Therefore
+\[
+ f_{1/8}(1/2)\ge
+ \frac{389}{606}-\frac{2646}{4379}
+ =\frac{99955}{2653674}>0.
+\]
+On $(0,\pi/2)$, $x\cot x$ decreases and $x\tan x$ increases.
+Increasing $u$ decreases both arguments, so the endpoint
+remains positive. The signed affine minimum is thus also the
+minimum over nonnegative profiles.
+
+\subsection{The frontier, its rigidity and the union witness}
+
+The two lattice tests give nonnegative slacks
+\[
+ \sigma_1=\overline A-1+d-a,\qquad
+ \sigma_2=\overline A/2+\overline C_{1/2}-1+2d-a.
+\]
+Since $q\theta=1-2u$ and $q(1-\theta)=u$,
+$q\sigma=(1-2u)\sigma_1+u\sigma_2$.
+The general residual is therefore
+\begin{equation}
+ \begin{split}
+ \operatorname{Res}={}&m(u)-\frac{2u^2}{u-e}
+       +\sum_iw_iF_u(f_i-f_u)\\
+ &+\frac{u-e}{8}\sum_iw_i
+       \left(\Gamma_i-\frac{4u}{u-e}\right)^2
+       +(1-2u)\sigma_1+u\sigma_2.
+ \end{split}
+ \label{eq:two-lattice-frontier-residual}
+\end{equation}
+All terms after the first are nonnegative.
+The positive profile gives $m(u)>0$, since $J(f_u)>0$ and
+$3A(f_u)/2-C_{1/2}(f_u)\ge A(f_u)>0$.
+The exact sufficient frontier is
+\begin{equation}
+ 1/8\le u\le1/3,\quad0\le e<u,\qquad
+ e\le E(u):=u-\frac{2u^2}{m(u)}.
+ \label{eq:two-count-frontier}
+\end{equation}
+The profile term costs at least
+$(u-1/8+1/1000)\sum_iw_i\|f_i-f_u\|_2^2$.
+Near equality at the frontier controls the weighted squared departures
+from the same profile and threshold, together with the lattice-test
+slacks. Individual control requires a lower bound for that profile's weight.
+
+Exactness refers to the enlarged dual problem constrained only
+by these two lattice tests. To verify it, use one profile $f_u$,
+write $E_1=A(f_u)-1$ and
+$E_2=A(f_u)/2+C_{1/2}(f_u)-1$, and choose
+\[
+ d=E_1-E_2\ge0,\qquad a=2E_1-E_2,\qquad
+ \Gamma=4u/(u-e).
+\]
+Both lattice tests are equalities and every residual term after
+the first vanishes. No actual universal Gram floor with those
+coefficients has been asserted; other periodic states and
+clipping can impose further restrictions.
+
+The function $m$ is smooth by its formula and concave as an
+infimum of affine functions of $u$. Stationarity gives
+$m'(u)=3A(f_u)/2-C_{1/2}(f_u)$, so $m-u m'=J(f_u)>0$.
+Differentiation yields
+\[
+ \left(\frac{u^2}{m}\right)''
+ =\frac{2(m-u m')^2}{m^3}-\frac{u^2m''}{m^2}>0.
+\]
+Thus $E$ is strictly concave on the stated interval.
+The following consequence needs no exact maximizer:
+\begin{equation}
+ u_{\rm U}=\frac{13711914}{10^8},\qquad
+ e_{\rm U}=\frac{5251083389778}{10^{14}},\qquad
+ m(u_{\rm U})>\frac{2u_{\rm U}^2}{u_{\rm U}-e_{\rm U}}.
+ \label{eq:union-common-point}
+\end{equation}
+
+For a finite rational verification, let $z=1/(16u)$ and put
+\[
+ C_n(z)=\sum_{k=0}^n\frac{(-1)^kz^k}{(2k)!},\qquad
+ S_n(z)=\sum_{k=0}^n\frac{(-1)^kz^k}{(2k+1)!}.
+\]
+For $0<2z\le1$, the index-15 sums bound the corresponding
+cosine and normalized sine below, and the index-16 sums bound
+them above; all denominator lower bounds are positive.
+It follows that
+\[
+ m(u)\ge m_L(u):=\frac12+
+ u\left\{\frac{C_{15}(2z)}{S_{16}(2z)}
+             -2z\frac{S_{16}(z)}{C_{15}(z)}\right\}.
+\]
+Substitution of the rationals in \eqref{eq:union-common-point}
+and positive-denominator cross multiplication give
+\[
+ m_L(u_{\rm U})
+ -\frac{2u_{\rm U}^2}{u_{\rm U}-e_{\rm U}}>10^{-14}.
+\]
+This specifies the certificate by finite rational expressions;
+no quadrature or optimization is a premise.
+
+The union complement consists of multiple nonreal pairs.
+A pair of multiplicity $j\ge2$ has excluded mass $2j$
+and excess $2(j-1)$, so $N-N_{\rm s\cup0}\le2eN$.
+At \eqref{eq:union-common-point}, equality is compatible with
+the count variables: assign mass $1-u_{\rm U}$ to simple real
+locations, $u_{\rm U}-2e_{\rm U}$ to simple nonreal pairs, and
+$2e_{\rm U}$ to double nonreal pairs. These masses are
+nonnegative. A double pair has mass four and excess two;
+multiplying by a common integer denominator gives integral
+populations with precisely the specified excess. The retained
+union relaxation therefore cannot force a lower proportion above
+\begin{equation}
+ 1-2e_{\rm U}
+ =\frac{22374458305111}{25000000000000}
+ =0.89497833220444.
+ \label{eq:union-method-ceiling}
+\end{equation}
+This is a feasible count population, not a construction of
+exponential vectors realizing every analytic energy.
+
+The zero-excess endpoint is the root $r_*\in[8/25,1/3]$
+of $m(r_*)=2r_*$. On that smaller interval
+$\alpha^2\le25/64$ and $\beta^2\le25/128$; elementary sine and
+cosine bounds imply
+\[
+ \|f_u\|_\infty\le\frac{384}{359}+\frac{50}{231}<\frac43.
+\]
+As $f_u\ge0$ and $\int f_u=1$, this gives $m'(u)<2$.
+Thus $m(u)-2u$ decreases strictly there.
+The same alternating expressions, with indices 9 and 10, give
+opposite signs at $32349386085/10^{11}$ and
+$32349386086/10^{11}$. Hence
+\[
+ 0.67650613914<1-r_*<0.67650613915.
+\]
+This is the simple-count endpoint of the two-lattice frontier;
+the next construction gives a stronger numerical obstruction.
+
+\section{A twelve-fibre obstruction for all profiles}
+\label{sec:twelve-fibre}
+
+Gebendorfer \cite[Theorem 1.2 and Sections 5--6]{GebendorferCap}
+used two periodic configurations to obtain the ceiling $0.674034$
+for a normalized nonnegative 25-mode profile family, with 24 free
+coefficients. The periodic configurations and their density
+balancing are his inputs. We solve the associated variational
+problem on the full affine $L^2$ space at the slightly larger value
+$0.67404$. We also give a positive profile showing why the
+original finite-mode test cannot be extended unchanged.
+
+\subsection{The quadratic problem and its coercivity}
+
+The two configurations are
+\[
+ A_{\rm per}:\ (0,\alpha_0)\pmod3,\quad \alpha_0=5189/5000,
+ \qquad
+ B_{\rm per}:\ (0,\gamma_0,2\gamma_0)\pmod4,\quad
+ \gamma_0=10289/10000.
+\]
+By \eqref{eq:integer-period-energy}, their full per-point energies are
+\begin{equation}
+ \begin{split}
+ Q_A(f)&=\frac16\left[4A(f)+2\sum_{j=1}^2
+ \{2+2\cos(2\pi j\alpha_0/3)\}C_{j/3}(f)\right],\\
+ Q_B(f)&=\frac1{12}\left[9A(f)+2\sum_{j=1}^3
+ \{3+4\cos(\pi j\gamma_0/2)+2\cos(\pi j\gamma_0)\}
+ C_{j/4}(f)\right].
+ \end{split}
+ \label{eq:twelve-periodic-energies}
+\end{equation}
+For $2/3<q<3/4$, give the second configuration weight
+$\lambda_q=9-6/q$. Then
+$(1-\lambda_q)3/2+\lambda_q4/3=1/q$.
+Writing $Q_q=(1-\lambda_q)Q_A+\lambda_qQ_B$, we have
+\begin{equation}
+ \mathcal F_q(f)=R(f)-qQ_q(f)
+ =R(f)-(6-8q)Q_A(f)-(9q-6)Q_B(f).
+ \label{eq:twelve-form}
+\end{equation}
+
+Every correlation shift is a multiple of $1/12$.
+Put $\ell=1/12$, $x_j=-1/2+j\ell$, and
+$F(x)=(f(x_0+x),\ldots,f(x_{11}+x))^t$ for $0<x<\ell$.
+Let $T_k$ have ones at $(j,j+k)$, $0\le j<12-k$, and zeros
+elsewhere. These are truncated shifts, with no periodic
+identification of cell endpoints. If
+$Q_q=c_0A+\sum_{k\in\{3,4,6,8,9\}}c_kC_{k/12}$, then
+\begin{equation}
+ \begin{split}
+ c_0&=(1-\lambda_q)\frac23+\lambda_q\frac34,\\
+ c_{4j}&=\frac{1-\lambda_q}{3}
+       \{2+2\cos(2\pi j\alpha_0/3)\},\qquad j=1,2,\\
+ c_{3j}&=\frac{\lambda_q}{6}
+       \{3+4\cos(\pi j\gamma_0/2)+2\cos(\pi j\gamma_0)\},
+       \qquad j=1,2,3.
+ \end{split}
+ \label{eq:twelve-coefficients}
+\end{equation}
+The two index sets in the last lines are disjoint.
+Since $C_{k/12}(f)=\int_0^\ell F(x)^tT_kF(x)\dd x$,
+\begin{equation}
+ \begin{split}
+ M_q&=(1-qc_0)I-\frac q2\sum_{k\in\{3,4,6,8,9\}}
+                         c_k(T_k+T_k^t),\\
+ \mathcal F_q(f)&=\int_0^\ell F(x)^tM_qF(x)\dd x+J(f).
+ \end{split}
+ \label{eq:twelve-matrix}
+\end{equation}
+
+Set
+\begin{equation}
+ q_{25}=\frac{337017}{500000},\qquad
+ q_{\rm c}=\frac{16851}{25000}.
+ \label{eq:twelve-test-values}
+\end{equation}
+The explicit rational enclosures in Appendix~\ref{app:twelve-fibre}
+give, at both values, every diagonal-dominance margin of $M_q$
+greater than $77/250$. Symmetry therefore gives
+$M_q>(77/250)I$. For a zero-mean perturbation,
+\eqref{eq:primitive-negative-energy} and the Dirichlet
+Poincare inequality on the whole interval give
+$J(h)\ge-2\|h\|_2^2/\pi^2$. Consequently
+\begin{equation}
+ \mathcal F_q(h)>
+ \left(\frac{77}{250}-\frac2{(157/50)^2}\right)\|h\|_2^2
+ >\frac1{10}\|h\|_2^2\qquad(h\ne0,\ \int h=0).
+ \label{eq:twelve-coercivity}
+\end{equation}
+All forms are bounded on $L^2(I)$. Translate the affine space
+by any normalized function and restrict to the closed
+zero-mean subspace. The bounded positive operator representing
+the coercive bilinear form is invertible there, and its inverse
+solves the stationarity equation. Thus a unique affine
+minimizer exists. This controls the full space, with no
+finite-mode remainder omitted.
+
+\subsection{A posteriori certification on the affine space}
+
+For any normalized real candidate $f_0$, put
+$g_0(s)=\int_I|s-t|f_0(t)\dd t$ and let
+\[
+ r=M_qf_0+g_0-c\one
+\]
+for any real $c$, interpreting the multiplication in fibres.
+If $m_q=\min_{\int f=1}\mathcal F_q(f)$, then
+\begin{equation}
+ \mathcal F_q(f_0)-10\|r\|_2^2
+ \le m_q\le\mathcal F_q(f_0).
+ \label{eq:twelve-residual-certificate}
+\end{equation}
+Indeed, for $\int h=0$,
+\[
+ \mathcal F_q(f_0+h)
+ =\mathcal F_q(f_0)+2\langle r,h\rangle+\mathcal F_q(h)
+ \ge\mathcal F_q(f_0)+2\langle r,h\rangle+\tfrac1{10}\|h\|_2^2.
+\]
+Completion of this Hilbert-space square proves the lower bound;
+the candidate itself proves the upper bound. The constant $c$
+disappears from the cross term because $\int h=0$.
+
+Appendix~\ref{app:twelve-fibre} defines one even, normalized,
+piecewise polynomial $f_0>7/10$ using 42 integer coefficients.
+Its evaluation is rational after seven cosine values have been
+enclosed by the displayed intervals. The resulting coarse
+enclosures, sufficient for the proof, are
+\begin{equation}
+ \begin{split}
+ \frac{651926252579}{10^{12}}
+ &<\mathcal F_{q_{25}}(f_0)
+   <\frac{651926252580}{10^{12}},\\
+ \frac{651920180779}{10^{12}}
+ &<\mathcal F_{q_{\rm c}}(f_0)
+   <\frac{651920180780}{10^{12}},\\
+ \left\|M_{q_{\rm c}}f_0+g_0-
+       \frac{651920180779}{10^{12}}\one\right\|_\infty
+ &<\frac4{10^{12}}.
+ \end{split}
+ \label{eq:twelve-certificate-values}
+\end{equation}
+Since $I$ has length one, the squared $L^2$ residual is less
+than $16/10^{24}$. It follows that
+\begin{equation}
+ m_{q_{\rm c}}>
+ \frac{651920180779}{10^{12}}-\frac{160}{10^{24}}
+ >2-2q_{\rm c}+\frac{18}{10^8},
+ \qquad 2-2q_{\rm c}=\frac{8149}{12500}.
+ \label{eq:twelve-positive-margin}
+\end{equation}
+On the other hand the first line of
+\eqref{eq:twelve-certificate-values} gives
+\begin{equation}
+ \mathcal F_{q_{25}}(f_0)
+ <2-2q_{25}-\frac1{200000}.
+ \label{eq:old-periodic-test-fails}
+\end{equation}
+Thus this periodic test does not exclude its original value over
+the larger profile space. This neither contradicts the source's
+finite-dimensional theorem nor excludes a different all-profile
+test at the 25-mode value.
+
+\subsection{Positivity of the true minimizer}
+
+The signed minimization already suffices for the obstruction.
+It is also the exact minimization over nonnegative profiles.
+Let $f^\dagger$ be the minimizer at $q_{\rm c}$ and put
+$c_0=\mathcal F_{q_{\rm c}}(f_0)$. The displayed enclosures give
+\[
+ \|M_{q_{\rm c}}f_0+g_0-c_0\one\|_\infty
+ <5\cdot10^{-12}<\varepsilon,\qquad\varepsilon=10^{-11}.
+\]
+Call this centered residual $r_0$ and set $h=f^\dagger-f_0$.
+The minimizing equation is
+$M_{q_{\rm c}}f^\dagger+g_{f^\dagger}=m_{q_{\rm c}}\one$:
+multiplication by $f^\dagger$ and integration identify its
+multiplier with the minimum. Subtract the candidate equation
+and pair with $h$ to obtain
+$\mathcal F_{q_{\rm c}}(h)=-\langle r_0,h\rangle$.
+Coercivity and \eqref{eq:twelve-residual-certificate} imply
+\[
+ \|h\|_2\le10\varepsilon,\qquad
+ 0\le c_0-m_{q_{\rm c}}\le10\varepsilon^2.
+\]
+Because $|s-t|\le1$, $\|g_h\|_\infty\le\|h\|_2$.
+Strict row diagonal dominance gives
+$\|M_{q_{\rm c}}^{-1}\|_{\ell^\infty\to\ell^\infty}
+ <250/77<4$: apply a row at a coordinate of maximum modulus
+in a finite-vector equation. The difference of the Euler
+equations therefore gives
+\[
+ \|h\|_\infty<
+ 4(\varepsilon+10\varepsilon+10\varepsilon^2)<10^{-9}.
+\]
+The equation supplies this bounded representative fibre by fibre;
+boundedness was not presumed. Since $f_0>7/10$,
+$f^\dagger$ is positive almost everywhere.
+Reflection invariance and uniqueness also make it even.
+
+For completeness there is an exact differential characterization,
+although certification did not require its numerical inversion.
+Put $G_j(x)=g_{f^\dagger}(x_j+x)$ and
+$V=G-m_{q_{\rm c}}\one$. Then
+\[
+ V''+2M_{q_{\rm c}}^{-1}V=0,\qquad
+ F=-M_{q_{\rm c}}^{-1}V.
+\]
+The 25 scalar conditions are continuity of $G,G'$ at the eleven
+internal junctions, $G'_0(0)=-1$, $G'_{11}(\ell)=1$, and
+$G_0(0)+G_{11}(\ell)=1$.
+The endpoint derivatives enforce normalization through $g''=2f$.
+The endpoint sum follows from
+$|t+1/2|+|1/2-t|=1$.
+Conversely these conditions identify $G$ with the integral
+potential: their difference is globally affine, with zero
+endpoint derivatives and zero endpoint sum.
+Continuity is imposed on the potential and its derivative,
+not on the profile; the latter may jump at cell boundaries.
+
+All forms in \eqref{eq:structural-forms} are continuous in $L^2$:
+shifts are contractions, and $|s-t|$ is a bounded integral
+kernel on an interval of finite measure.
+The positive even $f_0$ and $f^\dagger$ can be approximated by
+profiles whose square roots are smooth and supported strictly
+inside $I$, as required in Section~\ref{sec:interface}.
+For either $f$, first approximate $\sqrt f$ in $L^4$ by
+nonnegative even $\eta_j\in C_c^\infty((-1/2,1/2))$, using
+symmetric cutoffs and even nonnegative mollifiers. The estimate
+\[
+ \|\eta_j^2-f\|_2
+ \le\|\eta_j-\sqrt f\|_4
+       \bigl(\|\eta_j\|_4+\|\sqrt f\|_4\bigr)
+ \longrightarrow0
+\]
+shows that $\eta_j^2/\int\eta_j^2\to f$ in $L^2$.
+These normalized profiles have the required smooth square roots.
+The strict inequality \eqref{eq:old-periodic-test-fails} persists
+for a sufficiently close approximation. The variational infimum
+at $q_{\rm c}$ is unchanged on this dense admissible class,
+although its minimizer need not belong to the smooth class.
+
+\subsection{The simultaneous method ceiling}
+
+Apply \eqref{eq:general-periodic-residual} at the single count point
+$u=1-q_{\rm c}$, $e=0$. Stationarity gives for every covered row
+\begin{equation}
+ \begin{split}
+ \operatorname{Res}={}&
+ \delta+\sum_iw_i\mathcal F_{q_{\rm c}}(f_i-f^\dagger)\\
+ &+\frac{1-q_{\rm c}}8\sum_iw_i(\Gamma_i-4)^2
+       +q_{\rm c}\sigma,\qquad
+ \delta=m_{q_{\rm c}}-(2-2q_{\rm c})>\frac{18}{10^8}.
+ \end{split}
+ \label{eq:twelve-joint-residual}
+\end{equation}
+The profile term is at least
+$\frac1{10}\sum_iw_i\|f_i-f^\dagger\|_2^2$.
+The same point therefore satisfies every joint-affine row,
+including arbitrary individual clipping thresholds.
+Its simple-real proportion is
+\begin{equation}
+ q_{\rm c}=0.67404,\qquad
+ \text{giving the method ceiling }67.404\%.
+ \label{eq:all-profile-method-ceiling}
+\end{equation}
+All omitted mass can be assigned to simple nonreal pairs.
+Every location is then simple and the distinct, simple-anywhere
+and union counts all equal $N$. Lower bounds for those statistics
+do not remove this count witness.
+
+The comparison with earlier ceilings has two dimensions.
+Gebendorfer's smaller $0.674034$ value applies on his
+finite-dimensional family; the present result covers every
+normalized $L^2$ profile in the specified joint-affine interface.
+Knausg{\aa}rd's fixed second-window bounds
+\cite[Proposition 7.3]{Knausgard2026} are smaller still:
+$0.67357$ for seven index lags and $0.67383$ for all pairs.
+His periodic-law result
+\cite[Theorem 7.7 and Corollary 7.9]{Knausgard2026}, following
+\cite[Section 7.2]{AF}, treats a broader trace--energy construction
+with explicit regularity and variation costs.
+The present proof neither replaces every such construction nor
+identifies the optimal periodic mixture. It establishes the
+all-profile obstruction and quantitative residual for the rows
+defined in Section~\ref{sec:structural}.
+
+
+\section{Interaction retained and information still available}
+
+The constructions above separate three uses of a quadratic zero energy.
+First, separation can make clipping exact on a large block. For the
+explicit cosine profile this retains the full local reward and yields
+\eqref{eq:intro-main}. Second, local slack can control geometry rather
+than merely improve a scalar constant: the phase comparison bounds
+the departure of adjacent gaps from integral spacing, with an explicit
+price for arbitrarily long physical spans. Third, periodic configurations
+test the information content of affine deductions simultaneously over
+profiles and thresholds.
+
+The variational results make the third distinction quantitative.
+Coercivity identifies the unique optimal profile for a prescribed
+periodic mixture and measures the cost of departing from it. The
+common residual identifies the independent cost of a nonoptimal
+threshold and the slack in the periodic tests. These are statements
+about the data retained by the deduction. They explain why further
+information about the same operator can matter even when an affine
+count has already been optimized.
+
+The numerical proofs use two kinds of finite input. The eight-point
+floor for the main profile has full analytic enclosure and finite
+certificate data in the accompanying formal source. The labelled,
+third-profile and compensated-frame inequalities used elsewhere are
+the computer-assisted results cited at their statements; their
+published certificate computations are not replaced by the small
+arithmetic checks accompanying this paper. Those checks reproduce
+the displayed energy enclosures, table values, phase-polynomial
+bounds and variational residual certificates. In particular, the
+additional variational and multiplicity deductions are not asserted
+to be covered by the final exported statement of the supplied Lean
+file.
+
+\section*{acknowledgments}
+The author declares the substantial use of consumer-grade Gemini-3 and GPT-6 models for literature search, exploring and developing ideas, codes and proofs, drafting and LaTeX typesetting; the author takes full and sole responsibility for all contents of this work.
+
+
+\section*{Data availability}
+Numerical results reported here are reproducible from the verification
+scripts and certificate data in the repository. Lean code and verification details are also included. - Repository - 
+\href{https://github.com/arun-chandru/riemann-zeros}{github.com/arun-chandru/riemann-zeros}.
+
+
+
+\appendix
+\section{The imported eight-point data and their algebraic consequences}
+\label{app:local-data}
+
+This appendix specifies the local input for the second profile
+\eqref{eq:profile-two}. The whole-domain inequality
+\eqref{eq:local-floor} is the computer-assisted input of
+\cite[Proposition 5.3 and Tables 10--11]{Knausgard2026}, at
+$\theta=17/20$ and $\alpha=627/10^6$, with reward $a=8722/10^6$.
+The tables below fix that premise completely. The finite capacity,
+potential, and slack calculations following them are separate elementary
+consequences. Listing the data is not a replay of the source's continuum
+search or its computation-dependent formalisation.
+
+All entries in the next two tables are integer numerators with denominator
+$10^6$. In the first table the row is $r$, the column is $s$, and the entry
+is $10^6W_{rs}$; a dash is outside the range $0\le r<s\le7$.
+\begin{center}
+\small\setlength{\tabcolsep}{4pt}
+\begin{tabular}{r*{7}{r}}
+\toprule
+$r\backslash s$&1&2&3&4&5&6&7\\\midrule
+0&159939&0&280438&143766&709387&1000000&2000000\\
+1&---&264496&385569&340591&856233&581225&1000000\\
+2&---&---&389188&614430&757940&856233&709387\\
+3&---&---&---&372750&614430&340591&143766\\
+4&---&---&---&---&389188&385569&280438\\
+5&---&---&---&---&---&264496&0\\
+6&---&---&---&---&---&---&159939\\\bottomrule
+\end{tabular}
+\end{center}
+The corrections are continuous piecewise-linear functions of a gap.
+Their values at the fourteen knots are as follows; all seven functions
+vanish outside $[3/4,19/8]$.
+\begin{center}
+\small\setlength{\tabcolsep}{5pt}
+\begin{tabular}{r*{7}{r}}
+\toprule
+$t$&$10^6B_0(t)$&$10^6B_1(t)$&$10^6B_2(t)$&$10^6B_3(t)$&
+$10^6B_4(t)$&$10^6B_5(t)$&$10^6B_6(t)$\\\midrule
+$3/4$&0&0&0&0&0&0&0\\
+$7/8$&647&0&-425&-444&-425&0&647\\
+$1$&555&91&-425&-442&-425&91&555\\
+$9/8$&518&45&-342&-442&-342&45&518\\
+$5/4$&647&0&-425&-444&-425&0&647\\
+$11/8$&647&0&-425&-444&-425&0&647\\
+$3/2$&647&0&-425&-444&-425&0&647\\
+$13/8$&0&0&221&-442&221&0&0\\
+$7/4$&0&0&221&-442&221&0&0\\
+$15/8$&270&86&-275&-162&-275&86&270\\
+$2$&325&58&-244&-278&-244&58&325\\
+$17/8$&0&0&-425&850&-425&0&0\\
+$9/4$&647&0&-425&-444&-425&0&647\\
+$19/8$&0&0&0&0&0&0&0\\\bottomrule
+\end{tabular}
+\end{center}
+Thus $(B_0,\ldots,B_6)=(u_0,u_1,u_2,-2(u_0+u_1+u_2),
+u_2,u_1,u_0)$, where $u_j=B_j$ for $j=0,1,2$. In particular
+$\sum_{r=0}^6B_r(t)=0$ identically, including between knots.
+
+The seven lag-capacity sums, in the same integer units, are
+\begin{equation}
+ 10^6\sum_{r=0}^{7-h}W_{r,r+h}
+ =(1999996,1999998,1999998,1999998,1999999,2000000,2000000)_h,
+ \quad 1\le h\le7.
+ \label{eq:appendix-capacities}
+\end{equation}
+Every sum is at most $2\cdot10^6$. A pair in a translated configuration
+can occur at most once at each admissible relative position, so these
+are exactly the capacity bounds needed to charge its total weight to
+the ordered energy with coefficient two.
+
+For completeness, the bounded potential can also be read directly from
+the table. Set $C_r=\sum_{s=0}^rB_s$ for $0\le r\le5$ and
+\[
+ \Phi(g_0,\ldots,g_5)=\sum_{r=0}^5C_r(g_r).
+\]
+The ranges of $10^6C_r$ are respectively
+\[
+ [0,647],\quad[0,647],\quad[-425,222],\quad[-222,425],
+ \quad[-647,0],\quad[-647,0].
+\]
+These ranges include the zero values outside the knot interval.
+Linear interpolation cannot create a new extremum. Each range has
+length $647$, and therefore
+\begin{equation}
+ \osc\Phi\le\Omega:=\frac{3882}{10^6},\qquad
+ \sum_{r=0}^6B_r(g_r)
+ =\Phi(g_0,\ldots,g_5)-\Phi(g_1,\ldots,g_6).
+ \label{eq:appendix-potential}
+\end{equation}
+On summing complete frames the potential telescopes. The spread sums
+to at most seven times the total spread, and the reward occurs $m-7$
+times. Keeping the nonnegative frame slacks gives exactly
+\eqref{eq:retained-slack}, with $B_0=7a+\Omega$; this scalar $B_0$
+is distinct from the correction function $B_0(t)$ in the table.
+For $m<8$ the same inequality holds with zero slack and empty sums.
+
+The minima of the seven correction functions sum to
+$-(425+444+425)/10^6=-1294/10^6$. Since all pair weights are
+nonnegative, each frame slack is consequently at least
+\[
+ \alpha(y_{i+7}-y_i)-a-1294/10^6
+ =\alpha(y_{i+7}-y_i)-10016/10^6.
+\]
+This calculation supplies the span price used in the new argument and
+requires no positive margin for the source's accepted search boxes.
+
+The associated separated-norm and close-pair inputs are also those of
+\cite[Section 5]{Knausgard2026}. Its majorant is
+\[
+ g(u)=\frac{13}{20}
+ \left\{\sinc\bigl(\theta(u-1/2)\bigr)
+       +\sinc\bigl(\theta(u+1/2)\bigr)\right\}^2,
+ \qquad\theta=17/20.
+\]
+The cited certificate proves $g\ge f$ on $I$ and
+$K(t)^2\ge13707941/2^{28}$ on $|t|\le\theta$.
+The Fourier transform of $g$ vanishes for $|\xi|\ge\theta$, and
+\[
+ \Lambda=\int_{\R}g
+ =\frac{26}{17}(1+\sinc(17/20))<\frac{520}{289}<\frac95<2.
+\]
+Here $\sin(17\pi/20)=\sin(3\pi/20)<3\pi/20$.
+The support and integral follow directly from the sinc representation;
+the two continuum inequalities remain imported premises. These are the
+premises used in the smoothing and matching argument, rather than an
+inference about operator norms from entrywise approximation.
+
+\section{Exact arithmetic for the phase comparison and profile energies}
+\label{app:arithmetic}
+
+The new finite calculations use rational arithmetic. This appendix gives
+the recurrences, endpoints, and inequalities needed to reproduce them
+without a floating-point grid or additional numerical data. The scalar
+checks verify consequences of the stated imported premises; they do not
+replace those premises.
+
+\subsection{A common enclosure of \texorpdfstring{$\pi$}{pi} and the profile energies}
+
+For $0<x<1$ put
+\[
+ A_n(x)=\sum_{k=0}^{n-1}\frac{(-1)^kx^{2k+1}}{2k+1},\qquad
+ r_n(x)=\frac{x^{2n+1}}{2n+1}.
+\]
+For even $n$, the alternating-series remainder gives
+$A_n(x)<\arctan x<A_n(x)+r_n(x)$. Machin's identity
+$\pi=16\arctan(1/5)-4\arctan(1/239)$, with $n=24$ and $n=8$
+respectively, proves by rational comparison
+\begin{equation}
+ \pi_-:=\frac{3141592653589793}{10^{15}}
+ <\pi<
+ \pi_+:=\frac{3141592653589794}{10^{15}}.
+ \label{eq:appendix-pi}
+\end{equation}
+Explicitly the inner lower endpoint is
+$16A_{24}(1/5)-4\{A_8(1/239)+r_8(1/239)\}$ and the inner upper
+endpoint is $16\{A_{24}(1/5)+r_{24}(1/5)\}-4A_8(1/239)$;
+they lie strictly between the displayed rational endpoints.
+
+For the three integer-cosine profiles used above, write the energy as
+$A+B/\pi^2$ using \eqref{eq:plus-cosine-energy}. The exact pairs are
+\begin{center}
+\small
+\begin{tabular}{crr}
+\toprule Profile&$A$&$B$\\\midrule
+1&$1624643573617/1200000000000$&$-250664498438947/1200000000000000$\\
+2&$4026042764683/3000000000000$&$-440830631846157799/3175200000000000000$\\
+3&$4060769086579/3000000000000$&$-1000828214586143/4800000000000000$\\\bottomrule
+\end{tabular}
+\end{center}
+All three values of $B$ are negative. Thus the energy lies between
+$A+B/\pi_-^2$ and $A+B/\pi_+^2$, in that order. For convenient
+outward endpoints, multiplication by $10^{15}$ gives
+\begin{equation}
+\begin{aligned}
+ 1332704958281710&<10^{15}R_1<1332704958281712,\\
+ 1327947272844555&<10^{15}R_2<1327947272844557,\\
+ 1332463633167058&<10^{15}R_3<1332463633167061.
+\end{aligned}
+ \label{eq:appendix-energy-enclosures}
+\end{equation}
+The first and third upper endpoints are below the caps in
+\eqref{eq:plus-other-energy-caps}. The middle profile is used in the
+phase comparison. All three enclosures follow from the same short
+Machin calculation.
+
+\subsection{The phase polynomial and its six rational intervals}
+
+Use exactly the lags, radii, and weights in \eqref{eq:lag-data}.
+Generate the Chebyshev coefficients by
+$T_0=1$, $T_1=t$, $T_{l+1}=2tT_l-T_{l-1}$. Form the rational
+numerator $N(t)=\sum_lw_l(1-T_l(t))-(1-t)$ in
+\eqref{eq:phase-polynomial}. If $N(t)=\sum_{j=0}^{49}n_jt^j$,
+then $\sum_jn_j=0$ and division by $1-t$ gives
+\[
+ P(t)=\sum_{k=0}^{48}p_kt^k,\qquad
+ p_k=\sum_{j=0}^kn_j.
+\]
+The checks $n_{49}=-p_{48}$ and
+$P(1)=\sum_lw_ll^2-1$ provide endpoint identities independent
+of a sign test.
+
+On any rational interval $[u,v]$, substitute $t=u+(v-u)x$.
+Its power coefficients and degree-48 Bernstein coefficients are
+\begin{equation}
+ d_k=(v-u)^k\sum_{j=k}^{48}p_j\binom jk u^{j-k},\qquad
+ b_s=\sum_{k=0}^s d_k\frac{\binom sk}{\binom{48}k},
+ \quad0\le k,s\le48.
+ \label{eq:appendix-bernstein}
+\end{equation}
+The Bernstein basis is
+$\binom{48}s x^s(1-x)^{48-s}$; its entries are nonnegative and
+sum to one on $[0,1]$. Direct use of
+\eqref{eq:appendix-bernstein} gives, for all $49$ coefficients on
+each interval, the strict lower bounds in Table~\ref{tab:phase-bounds}.
+Every bound exceeds $1/10000$. These $294$ rational comparisons
+prove the phase inequality on the entire circle. Equivalently, start
+with the Bernstein coefficients on $[-1,1]$ and apply de Casteljau
+midpoint subdivision to the six stated pieces; its updates are simply
+$(b_j+b_{j+1})/2$. The independently implemented check instead
+constructs $T_l$ from the closed formula
+\[
+ T_l(t)=\frac l2\sum_{j=0}^{\lfloor l/2\rfloor}
+ \frac{(-1)^j(l-j-1)!}{j!(l-2j)!}(2t)^{l-2j}
+ \quad(l\ge1)
+\]
+and uses direct interval conversion, avoiding the first implementation's
+recurrence and subdivision.
+
+The other rigidity checks are short finite sums. With $c_j=(-1)^ja_j$
+and $z_0=2601/25$, the tail lower bound is
+\[
+ 1+\sum_{c_j<0}\frac{c_jz_0}{z_0-j^2}+\sum_{c_j>0}c_j
+ =\frac{3123731672835001}{3750959784000000}>\frac{104}{125}.
+\]
+For each lag the excess in the radius condition is exactly
+\[
+ R_l-\left\{q_ld_0/\alpha-(7q_l-l)\theta\right\}
+ =\frac{16q_l}{627}>0.
+\]
+Using $\pi<22/7$, the remaining rational comparisons are
+\begin{equation}
+ \frac{196(22/7)^2}{8(104/125)^2}
+ =\frac{1890625}{5408}<350,\qquad
+ \sum_{l=12}^{49}\frac{196q_l}{2\alpha R_l^3}<112,
+ \qquad
+ \sum_{l=12}^{49}\frac{196l}{8R_l^2}<6.
+ \label{eq:appendix-resource-checks}
+\end{equation}
+All denominators are positive. Together with the combinatorial proof in
+Section~\ref{sec:rigidity}, these comparisons establish the displayed
+energy, slack, and boundary prices.
+
+\subsection{Primitive pressure values and scalar guards}
+
+Integer derivatives can be reconstructed without trigonometric interval
+arithmetic. Put $s(0)=0$ and $s(n)=(-1)^n/n$ for nonzero integers.
+The sinc expansion gives
+\[
+ K'(k)=s(k)+\frac12\sum_{j=1}^{10}a_j\{s(k-j)+s(k+j)\},
+ \qquad K(k)=a_k/2\quad(k=1,2).
+\]
+This yields the signed values in Section~\ref{sec:bootstrap}.
+The profile absolute-coefficient sum is $210672/10^6<1$, and
+the second-derivative bound has the explicit margin
+\[
+ 4-\frac{(22/7)^2}{3}\left(1+\frac{210672}{10^6}\right)
+ =\frac{31793}{2296875}>0.
+\]
+
+For $A_k=|K(k)|$, $B_k=|K'(k)|$, $r_1=1/20$, $r_2=1/25$,
+and the fixed $p,c,C$ in \eqref{eq:pressure}, the primitive inner
+and outer guards are
+\begin{center}
+\small
+\begin{tabular}{ccc}
+\toprule Quantity&$k=1$&$k=2$\\\midrule
+$A_k-B_kr_k-2r_k^2$&$36124241/5280000000$&$395330317/154000000000$\\
+$q_0=2A_k^2+pk-c$&$45448441/20000000000$&$7255009/125000000000$\\
+$B_k-2r_k$&$233921359/264000000$&$2084993683/6160000000$\\
+$2Cr_k-p$&$1883/4000$&$1503/4000$\\
+$p(k-r_k)+Cr_k^2-c$&$2583/400000$&$259/40000$\\\bottomrule
+\end{tabular}
+\end{center}
+They are all positive. The quadratic coefficients are
+\[
+ q_2=
+ \frac{216248962271606881}{34848000000000000}>6
+ \quad(k=1),\qquad
+ q_2=\frac{93349805577714704489}{18972800000000000000}>4
+ \quad(k=2).
+\]
+The two exact discriminants are those in
+\eqref{eq:discriminants}. The left-interval slopes
+$4A_k(B_k-2r_k)-p$ are the positive fractions printed there in
+the proof, and $5p/2-c=117/100000>0$ pays every remaining nearest
+integer. Thus the rational checks cover the Taylor positivity,
+both quadratic minima, the left intervals, outer monotonicity, and
+the unbounded range of gaps.
+
+The affine and smoothing arithmetic is
+\[
+ \begin{gathered}
+ Q=1+350(19/4)=3327/2,\\
+ B_\star=\frac{350(19/4)B_0+c+6(19/4)}Q
+ =\frac{27293111}{332700000},\\
+ \frac{350(19/4)270+6}Q=\frac{299254}{1109}.
+ \end{gathered}
+\]
+The pair and span guards can be read without decimal approximation:
+\[
+ 0<a_\star=\frac{725489}{83175000}<\frac9{1000}<\frac1{20}
+ <\frac{13707941}{2^{28}},\qquad
+ 0<b_\star=\frac{584077}{133080000}<\frac{4389}{10^6}.
+\]
+They also imply $1-a_\star>0$. These are the guards used to pass
+from the separated finite certificate to the global count.
+
+\section{Exact data for the twelve-fibre certificate}
+\label{app:twelve-fibre}
+
+This appendix specifies all arithmetic used in
+\eqref{eq:twelve-certificate-values}: finite rational polynomial
+integration and elementary transcendental enclosures.
+A numerical boundary-value solve helped find the candidate,
+but plays no part in the certificate.
+
+\subsection{The normalized positive candidate}
+
+On cell $j$ put $y=24(s-x_j)-1\in[-1,1]$.
+For $0\le j\le5$ define
+$p_j(y)=10^{-14}\sum_{k=0}^6n_{jk}y^k$.
+The integer data are split into two tables:
+\begin{center}
+\small
+\begin{tabular}{rrrrr}
+\toprule
+$j$&$n_{j0}$&$n_{j1}$&$n_{j2}$&$n_{j3}$\\
+\midrule
+0&81452785069661&7292373590683&-495291728588&-8832261778\\
+1&94237762244332&5325472480437&-540048842503&-5392125542\\
+2&102829051521759&3211889787491&-561973129360&-1752444969\\
+3&106611512235993&1220224746606&-555948929227&1548835301\\
+4&105872959612158&3026144941748&-520652451189&-4834131202\\
+5&110067398521096&987168788008&-542216720202&-1573291099\\
+\bottomrule
+\end{tabular}
+\end{center}
+\begin{center}
+\small
+\begin{tabular}{rrrr}
+\toprule
+$j$&$n_{j4}$&$n_{j5}$&$n_{j6}$\\
+\midrule
+0&468777856&3579876&-172336\\
+1&498965786&1817587&-181576\\
+2&508473653&-36353&-183294\\
+3&491383198&-1705511&-175034\\
+4&443772398&2367437&-154759\\
+5&463005280&777705&-161751\\
+\bottomrule
+\end{tabular}
+\end{center}
+Define $p_{11-j}(y)=p_j(-y)$ and divide the full function by
+\begin{equation}
+ Z_0=\frac{62999999999997821}{63000000000000000}.
+ \label{eq:twelve-normalizer}
+\end{equation}
+Thus $f_0(s)=p_j(y)/Z_0$ on cell $j$.
+Using $ds=dy/24$ and
+$\int_{-1}^1y^k\dd y=2/(k+1)$ for even $k$, zero for odd $k$,
+gives exactly $Z_0$ as the unnormalized mass.
+Reflection gives evenness.
+On each cell the constant coefficient of $p_j/Z_0$, less the
+sum of the absolute values of its other coefficients, exceeds
+$7/10$. This proves uniform positivity on the whole cell.
+
+All remaining polynomial operations can be specified by
+two linear maps. If $v(y)=\sum_kv_ky^k$, put
+\[
+ \mathcal I(v)=\frac1{12}
+ \sum_{\substack{k\ge0\\k\ {\rm even}}}\frac{v_k}{k+1},
+ \qquad
+ \mathcal P(v)(y)=\sum_{k\ge0}\frac{v_k}{k+1}
+                 \{y^{k+1}-(-1)^{k+1}\}.
+\]
+Here $\mathcal I$ is the physical-cell integral and
+$\mathcal P(v)(-1)=0$.
+Write $v_j=p_j/Z_0$. Starting with $\mu_0=0$ and $\nu_0=1/2$,
+define
+\begin{equation}
+ \begin{split}
+ P_j(y)&=\mu_j+\mathcal P(v_j)(y)/24,\\
+ g_j(y)&=\nu_j+\mathcal P(2P_j-1)(y)/24,\\
+ \mu_{j+1}&=P_j(1),\qquad\nu_{j+1}=g_j(1).
+ \end{split}
+ \label{eq:twelve-potential-recursion}
+\end{equation}
+The initial potential is $1/2$ by evenness and normalization.
+The recursion gives the cumulative integral and exact potential;
+$\mu_{12}=1$, $\nu_{12}=1/2$, and
+\begin{equation}
+ \begin{split}
+ A(f_0)&=\sum_j\mathcal I(v_j^2),\\
+ C_{k/12}(f_0)&=\sum_{j=0}^{11-k}\mathcal I(v_jv_{j+k}),\\
+ J(f_0)&=\sum_j\mathcal I(v_jg_j)
+        =2\sum_j\mathcal I(P_j-P_j^2).
+ \end{split}
+ \label{eq:twelve-exact-integration}
+\end{equation}
+The last equality supplies a consistency check between two
+exact integrations.
+
+\subsection{Seven explicit cosine enclosures}
+
+Every transcendental entry in \eqref{eq:twelve-coefficients}
+is one of the seven values below.
+The integer $L_r$ in the second column satisfies
+\begin{equation}
+ \frac{L_r}{10^{18}}<\cos(\pi r)<
+ \frac{L_r+1}{10^{18}}.
+ \label{eq:twelve-cosine-grid}
+\end{equation}
+\begin{center}
+\small
+\begin{tabular}{rr}
+\toprule
+$r$&$L_r$\\
+\midrule
+$5189/7500$&$-566923938842617133$\\
+$5189/3750$&$-357194495134345020$\\
+$10289/20000$&$-45380423447917089$\\
+$10289/10000$&$-995881234335375474$\\
+$30867/20000$&$135767447683864460$\\
+$10289/5000$&$983558865802702074$\\
+$30867/10000$&$-963134400298818254$\\
+\bottomrule
+\end{tabular}
+\end{center}
+To verify the table, for a positive integer $b$ put
+$A_n(b)=\sum_{k=0}^n(-1)^k/((2k+1)b^{2k+1})$.
+The alternating remainder and Machin's identity imply
+\[
+ 16A_{65}(5)-4A_{20}(239)
+ <\pi<
+ 16A_{64}(5)-4A_{21}(239).
+\]
+Reduce each rational multiplier modulo two and by reflection
+to $\widetilde r\in[0,1]$.
+Multiplication by the displayed interval for $\pi$ gives
+$X=[X_-,X_+]$.
+Evaluate $\sum_{k=0}^{40}(-1)^kX^{2k}/(2k)!$ using rational
+interval arithmetic and enlarge both endpoints by $X_+^{82}/82!$.
+Taylor's theorem to degree 81 justifies this enlargement,
+since all real derivatives of cosine have absolute value at most one.
+The resulting interval lies strictly inside the corresponding
+interval in \eqref{eq:twelve-cosine-grid}.
+Thus the seven entries follow from the displayed finite sums.
+
+\subsection{Matrix and residual acceptance inequalities}
+
+Insert \eqref{eq:twelve-cosine-grid} into
+\eqref{eq:twelve-coefficients}--\eqref{eq:twelve-matrix} with
+outward rational interval arithmetic.
+The diagonal is exact: $1-qc_0=3/2-17q/12$.
+There are three row-diagonal-dominance types.
+The last two columns below are strict lower bounds with
+denominator $10^{12}$:
+\begin{center}
+\small
+\begin{tabular}{crr}
+\toprule
+Row indices&$q=q_{25}$&$q=q_{\rm c}$\\
+\midrule
+$0,1,2,9,10,11$&308234221665&308227513777\\
+$3,8$&312599837175&312596684670\\
+$4,5,6,7$&355085988964&355079480788\\
+\bottomrule
+\end{tabular}
+\end{center}
+Each exceeds $77/250$. The calculation is the exact diagonal
+less the sum of the absolute upper bounds of the other entries.
+
+Use \eqref{eq:twelve-exact-integration} in
+\eqref{eq:twelve-form} for the energies.
+For the residual at $q_{\rm c}$ take
+$c=651920180779/10^{12}$ and form on each cell
+\[
+ r_j(y)=\sum_{k=0}^{11}(M_{q_{\rm c}})_{jk}v_k(y)+g_j(y)-c.
+\]
+If its coefficient intervals are $[a_{jr},b_{jr}]$, put
+$V_j=\sum_r\max(|a_{jr}|,|b_{jr}|)$.
+Then $|r_j(y)|\le V_j$ on $[-1,1]$ and
+$\|r\|_2^2\le\sum_jV_j^2/12$.
+The rational data give
+\[
+ \begin{gathered}
+ 651926252579<
+ 10^{12}\mathcal F_{q_{25}}(f_0)<651926252580,\\
+ 651920180779<
+ 10^{12}\mathcal F_{q_{\rm c}}(f_0)<651920180780,\\
+ V_j<4/10^{12}\qquad(0\le j\le11).
+ \end{gathered}
+\]
+These are the coarse certificates in
+\eqref{eq:twelve-certificate-values}.
+Every integral, coefficient and comparison is specified above
+as a rational operation on displayed integers or the seven proved
+intervals. The residual estimate
+\eqref{eq:twelve-residual-certificate} turns these finite
+inequalities into the all-$L^2$ conclusion.
+
+\begin{thebibliography}{99}
+\raggedright
+
+\bibitem{BGSTB}
+Siegfred Alan C. Baluyot, Daniel Alan Goldston, Ade Irma Suriajaya,
+and Caroline L. Turnage-Butterbaugh,
+\emph{An unconditional Montgomery theorem for pair correlation of zeros
+of the Riemann zeta-function},
+Acta Arith. \textbf{214} (2024), 357--376.
+\url{https://doi.org/10.4064/aa230612-20-3}.
+Preprint: \url{https://arxiv.org/abs/2306.04799v1}.
+
+\bibitem{AF}
+Levent Alp\"oge and Ralph Furman,
+\emph{More than two thirds of the zeta zeros are simple and on the critical line},
+preprint, arXiv:2608.13637v2, 19 August 2026.
+\url{https://arxiv.org/abs/2608.13637v2}.
+
+\bibitem{Lamzouri}
+Youness Lamzouri,
+\emph{A new proof that more than 2/3 of the zeros of the Riemann zeta
+function are simple and on the critical line},
+preprint, arXiv:2609.02882v2, 8 September 2026.
+\url{https://arxiv.org/abs/2609.02882v2}.
+
+\bibitem{ChandruP6}
+R. Arun Chandru,
+\emph{Compensated Gram Corrections for Zero Counts of the Riemann Zeta Function},
+Zenodo preprint, version\_1, 11 September 2026
+(manuscript dated 10 September 2026).
+\url{https://doi.org/10.5281/zenodo.22701203}.
+
+\bibitem{Ainta}
+ainta,
+\emph{More than 67.3\% of the zeros of the Riemann zeta function
+are simple and lie on the critical line},
+public research repository, pinned commit of 11 August 2026.
+\url{https://github.com/ainta/zeta-simple-zeros/tree/040c5e899e658aed7b56a2a87f501798fe10761d}.
+
+\bibitem{AMTOPA}
+AMTOPA,
+\emph{Joint window and exact-pressure optimization for simple zeros
+of the Riemann zeta function},
+public research repository, pinned commit of 13 August 2026.
+\url{https://github.com/AMTOPA/zeta-exact-pressure/tree/7253fdcab9366af45b8c8caf44e408c0af44a1a7}.
+
+\bibitem{GebendorferWindows}
+Jonas Jakob Gebendorfer,
+\emph{Compatible local windows and a certified lower bound
+for simple critical-line zeros},
+research draft dated 7 September 2026; Zenodo deposit, 8 September 2026.
+\url{https://doi.org/10.5281/zenodo.22661276}.
+
+\bibitem{GebendorferExpanded}
+Jonas Jakob Gebendorfer,
+\emph{An expanded window and joint position pressures
+for simple critical-line zeros},
+research draft v0.3, 7 September 2026.
+\url{https://doi.org/10.5281/zenodo.22643957}.
+
+\bibitem{Tawanerguo}
+tawanerguo-cn,
+\emph{A certified unconditional 67.3192911473\% lower bound
+for simple zeros of the Riemann zeta function},
+public research repository, pinned commit of 11 August 2026;
+archive release dated 12 August 2026.
+\url{https://github.com/tawanerguo-cn/zeta-simple-zeros/tree/45149f6d403059a71be73c5e3f884cee7cd62b20}.
+Archive: \url{https://doi.org/10.5281/zenodo.21892048}.
+
+\bibitem{Knausgard2026}
+Kristian Muri Knausg{\aa}rd,
+\emph{More than 83.9\% of the zeros of the Riemann zeta function
+are distinct and more than 67.35\% are simple and on the critical line},
+preprint, arXiv:2610.08965v1, 6 October 2026.
+\url{https://arxiv.org/abs/2610.08965v1}.
+
+\bibitem{Freund}
+G. Freund,
+\emph{Lossless local-pressure transfer by separating close pairs},
+draft pull request 888, 14 September 2026.
+\url{https://github.com/GettysburgResearch/riemann/pull/888}.
+Pinned proof:
+\url{https://github.com/GettysburgResearch/riemann/blob/1ce38f1f5b6f39b5a182261c33936c23028e40ea/standalone/2026-09-14-lossless-pressure/PROOF.md}.
+
+\bibitem{DSouza}
+Oliver D'Souza,
+\emph{On the proportions of simple and of distinct zeros
+of the Riemann zeta function},
+research preprint with Lean formalization, release v1.0, 3 October 2026.
+\url{https://github.com/Oliverds321/simple-zeros/tree/c8fee8e21ad93b3504b215d6a6098b96cb7a0cea}.
+
+\bibitem{GebendorferCap}
+Jonas Jakob Gebendorfer,
+\emph{Compatible triples and a periodic-mixture obstruction
+for a critical-line zero certificate},
+consolidated research draft, 7 September 2026.
+\url{https://doi.org/10.5281/zenodo.22647797}.
+
+\bibitem{OjhaTrmdy}
+Vivaswat Ojha,
+\emph{A certified 67.32001\% lower-bound candidate for simple zeros
+of the Riemann zeta function on the critical line},
+contributor draft dated 11 August 2026, in the public research repository
+of trmdy, pinned at
+\url{https://github.com/trmdy/zeta-simple-zeros-673137/tree/1610b97b7895ff34982260f8dcaf04a0f7b82cf7}.
+The related repository report
+\emph{Campaign 2 (2026-08-11, afternoon): three attempted improvements
+and what they proved} is at
+\url{https://github.com/trmdy/zeta-simple-zeros-673137/blob/1610b97b7895ff34982260f8dcaf04a0f7b82cf7/docs/campaign-2.md}.
+
+\bibitem{Rakitin}
+Dmitry Rakitin,
+\emph{Zeta and Xi Zero Results},
+public research repository, release v0.1.1, 15 September 2026.
+\url{https://github.com/RakitinD/zeta-xi-zero-results/tree/8dd1ba8db18c3d27effcf3257577587513b6cd98}.
+
+\bibitem{ShiTrace}
+Yuhang Shi,
+\emph{A two-certificate trace-energy deduction for simple zeros
+of the Riemann zeta function},
+public research draft v0.1.0, 14 August 2026.
+\url{https://doi.org/10.5281/zenodo.21926962}.
+
+\bibitem{Schafer}
+Dirk Sch\"afer,
+\emph{A Certified Finite Refinement for Simple and Distinct Zeros
+of the Riemann Zeta Function},
+preprint, 18 September 2026.
+\url{https://doi.org/10.5281/zenodo.22837912}.
+
+\bibitem{Singh}
+Ketan Singh,
+\emph{An Unconditional 67.345129\% Lower Bound for Simple Zeros
+of the Riemann Zeta Function on the Critical Line},
+preprint v1, 30 August 2026.
+\url{https://doi.org/10.5281/zenodo.22119371}.
+
+\bibitem{KnausgardDistinct}
+Kristian Muri Knausg{\aa}rd,
+\emph{More than 83.69\% of the zeros of the Riemann zeta function
+are distinct},
+preprint, arXiv:2609.33043v2, 7 October 2026.
+\url{https://arxiv.org/abs/2609.33043v2}.
+
+
+
+\bibitem{BGSTBI}
+Siegfred Alan C. Baluyot, Daniel Alan Goldston, Ade Irma Suriajaya,
+and Caroline L. Turnage-Butterbaugh,
+\emph{Pair Correlation of Zeros of the Riemann Zeta Function I:
+Proportions of Simple Zeros and Critical Zeros},
+preprint, arXiv:2501.14545v3, 1 September 2026.
+\url{https://arxiv.org/abs/2501.14545v3}.
+
+\bibitem{Montgomery}
+Hugh L. Montgomery,
+\emph{The pair correlation of zeros of the zeta function},
+Proc. Sympos. Pure Math. \textbf{24}, American Mathematical Society,
+1973, 181--193.
+
+\bibitem{MontgomeryTaylor}
+Hugh L. Montgomery,
+\emph{Distribution of the zeros of the Riemann zeta function},
+Proceedings of the International Congress of Mathematicians
+(Vancouver, 1974), vol.~1, Canadian Mathematical Congress,
+1975, 379--381.
+
+\bibitem{CGdL}
+Andr\'es Chirre, Felipe Gon\c{c}alves and David de Laat,
+\emph{Pair correlation estimates for the zeros of the zeta function
+via semidefinite programming},
+Adv. Math. \textbf{361} (2020), 106926.
+\url{https://arxiv.org/abs/1810.08843v2}.
+
+\bibitem{Santibanez}
+Felipe Santiba\~nez-Leal,
+\emph{Stronger local overlap certificates and distinct zeros of the
+Riemann zeta function}, preprint, version 0.01, 3 October 2026.
+\url{https://doi.org/10.5281/zenodo.23128663}.
+
+\bibitem{Lavery2026}
+Samuel Lavery,
+\emph{Eight-point weighted refinement with edge windows},
+Lean source and certificate data, 2026.
+\url{https://github.com/josusanmartin/riemann/blob/296f7bb9c4e01b0c97554cf76af91ed99a410e8d/submissions/attempt-016/proof/Solution.lean}.
+
+\begingroup\interlinepenalty=10000
+\bibitem{Waddle}
+Zach Waddle,
+\emph{Unconditional low-multiplicity profiles for zeros of the Riemann
+zeta function: Sharp consequences of a multiplicity-aware rank--trace
+inequality}, public repository draft, version 0.2, 12 August 2026.
+\url{https://github.com/zach7036/riemann-hypothesis-research/blob/main/publication/low-multiplicity-zeta/low_multiplicity_zeta.tex}.
+\par\endgroup
+
+\bibitem{STT}
+Aleksander Simoni\v{c}, Timothy S. Trudgian and Caroline L. Turnage-Butterbaugh,
+\emph{Some explicit and unconditional results on gaps between zeroes
+of the Riemann zeta-function},
+Trans. Amer. Math. Soc. \textbf{375} (2022), 3239--3265.
+\url{https://doi.org/10.1090/tran/8571}.
+
+\bibitem{SM}
+Accompanying Supplemental Material is in the repository - 
+\href{https://github.com/arun-chandru/riemann-zeros}{github.com/arun-chandru/riemann-zeros}
+
+\end{thebibliography}
+\end{document}
+
+
+
